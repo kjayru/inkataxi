@@ -18,22 +18,22 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::get('conductores','Voyager\ConductorController@index');
-    Route::get('asignacion','Voyager\ConductorController@index');
-    Route::get('clientes','Voyager\ConductorController@index');
-    Route::get('validar','Voyager\ConductorController@index');
-    Route::get('tipos-servicio','Voyager\ConductorController@index');
-    Route::get('tipo-auto','Voyager\ConductorController@index');
-    Route::get('tipos-de-pago','Voyager\ConductorController@index');
-    Route::get('configuraciones','Voyager\ConductorController@index');
-    Route::get('promociones','Voyager\ConductorController@index');
-    Route::get('contacto','Voyager\ConductorController@index');
-    Route::get('servicio-panico/clientes','Voyager\ConductorController@index');
-    Route::get('servicio-panico/taxistas','Voyager\ConductorController@index');
-    Route::get('color','Voyager\ConductorController@index');
-    Route::get('modelo','Voyager\ConductorController@index');
-    Route::get('notificaciones','Voyager\ConductorController@index');
-    Route::get('asignaciones','Voyager\ConductorController@index');
+    Route::get('conductores','Voyager\ConductorController@inicio');
+    Route::get('asignacion','Voyager\ConductorController@asignacion');
+    Route::get('clientes','Voyager\ClienteController@inicio');
+    Route::get('validar','Voyager\ValidarController@index');
+    Route::get('tipos-servicio','Voyager\TiposServicioController@index');
+    Route::get('tipo-auto','Voyager\TipoAutoController@index');
+    Route::get('tipos-de-pago','Voyager\TiposPagosController@index');
+    Route::get('configuraciones','Voyager\ConfiguracionController@index');
+    Route::get('promociones','Voyager\PromocionController@index');
+    Route::get('contacto','Voyager\ContactoController@index');
+    Route::get('servicio-panico/clientes','Voyager\ServicioClienteController@index');
+    Route::get('servicio-panico/taxistas','Voyager\ServicioTaxistaController@index');
+    Route::get('color','Voyager\ColorController@index');
+    Route::get('modelo','Voyager\ModeloController@index');
+    Route::get('notificaciones','Voyager\NotificacionController@index');
+    Route::get('asignaciones','Voyager\AsignacionController@index');
 });
 
 Auth::routes();

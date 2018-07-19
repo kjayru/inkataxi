@@ -17,7 +17,7 @@ use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
 
-class ConductorController extends VoyagerBaseController
+class ClienteController extends VoyagerBaseController
 {
     /**
      * Display a listing of the resource.
@@ -27,16 +27,10 @@ class ConductorController extends VoyagerBaseController
     public function inicio()
     {
       
-         return view('vendor.voyager.conductor.index');
+         return view('vendor.voyager.cliente.show');
         
     }
 
-    public function asignacion()
-    {
-      
-         return view('vendor.voyager.conductor.asignacion');
-        
-    }
 
     /**
      * Show the form for creating a new resource.
