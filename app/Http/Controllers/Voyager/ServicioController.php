@@ -24,8 +24,13 @@ class ServicioController extends VoyagerBaseController
     }
 
 
-    public function servicoPanicoTaxi()
+    public function servicioPanicoTaxi()
     {
         return view('vendor.voyager.servicios.panicoTaxi');
+    }
+
+    public function servicioPanicoCliente()
+    {
+        return view('vendor.voyager.servicios.panicocliente');
     }
 }

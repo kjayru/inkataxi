@@ -16,25 +16,9 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
-
-class CarController extends VoyagerBaseController
+class NotificacionController extends VoyagerBaseController
 {
-   public function tipoAuto(){
-       return view('vendor.voyager.auto.tipoPago');
+   public function mostrar(){
+       return view('vendor.voyager.notificacion.index');
    }
-
-   public function autoColor()
-   {
-        return view('vendor.voyager.auto.autocolor');
-
-   }
-
-   public function autoModelo()
-    {
-        return view('vendor.voyager.auto.automodelo');
-    }
-    public function autoMarca()
-    {
-        return view('vendor.voyager.auto.automarca');
-    }
 }

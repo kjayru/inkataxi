@@ -28,12 +28,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('configuraciones','Voyager\ConfiguracionController@configurar');
     Route::get('promociones','Voyager\PromocionController@mostrar');
     Route::get('contacto','Voyager\ContactoController@contacto');
-    Route::get('servicio-panico/clientes','Voyager\ServicioClienteController@index');
-    Route::get('servicio-panico/taxistas','Voyager\ServicioTaxistaController@index');
-    Route::get('color','Voyager\ColorController@index');
-    Route::get('modelo','Voyager\ModeloController@index');
-    Route::get('notificaciones','Voyager\NotificacionController@index');
-    Route::get('asignaciones','Voyager\AsignacionController@index');
+    Route::get('servicio-panico/clientes','Voyager\ServicioController@servicioPanicoCliente');
+    Route::get('servicio-panico/taxistas','Voyager\ServicioController@servicioPanicoTaxi');
+    Route::get('color','Voyager\CarController@autoColor');
+    Route::get('modelo','Voyager\CarController@autoModelo');
+    Route::get('marca','Voyager\CarController@autoMarca');
+    Route::get('notificaciones','Voyager\NotificacionController@mostrar');
+    Route::get('asignaciones','Voyager\AsignacionController@mostrar');
 });
 
 Auth::routes();
