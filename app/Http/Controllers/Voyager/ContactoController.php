@@ -18,7 +18,7 @@ use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
 class ContactoController extends VoyagerBaseController
 {
-    public function contacto(){
+    public function mostrar(){
         return view('vendor.voyager.contacto.index');
     }
 }
