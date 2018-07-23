@@ -207,6 +207,8 @@ return [
         '//adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css',
         '/plugins/morris/morris.css',
         '//unpkg.com/ionicons@4.2.1/dist/css/ionicons.min.css',
+        '//use.fontawesome.com/releases/v5.1.1/css/all.css',
+        '//use.fontawesome.com/releases/v5.1.1/js/all.js',
     ],
 
     'additional_js' => [

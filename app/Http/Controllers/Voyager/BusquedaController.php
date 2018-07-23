@@ -15,41 +15,29 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
+use App\Geoposition;
 use App\User;
 
-class ConductorController extends VoyagerBaseController
+class BusquedaController extends VoyagerBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function inicio()
     {
-      
-        $users = User::where('role_id',2)->get();
-         return view('vendor.voyager.conductor.index',['users'=>$users]);
-        
+        $geos = Geoposition::all();
+        return view('vendor.voyager.busqueda.index',['geos' => $geos]);
     }
 
-    public function inicioEdit($id)
+    public function inicioNew()
     {
-      
-         return view('vendor.voyager.conductor.index');
-        
+        return view('vendor.voyager.busqueda.index');
     }
 
-    public function asignacion()
+    public function busqueda()
     {
-      
-         return view('vendor.voyager.conductor.asignacion');
-        
+        return view('vendor.voyager.busqueda.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
+    public function getdatos()
+    {
+        return view('vendor.voyager.busqueda.index');
+    }
 }

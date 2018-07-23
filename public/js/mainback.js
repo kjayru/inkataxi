@@ -7,7 +7,7 @@ function include(url) {
 }
 $(function() {
     'use strict'
-
+/*
     var salesChartCanvas4 = $('#salesChart4').get(0).getContext('2d')
         // This will get the first returned node in the jQuery collection.
     var salesChart4 = new Chart(salesChartCanvas4)
