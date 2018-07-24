@@ -3,6 +3,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 @section('content')
+@include('flash::message')
+
 <section class="content-header">
         <h1>Busqueda de conductores</h1>
     </section>
@@ -13,12 +15,13 @@
                 <div class="box-body">
                     <div class="opciones">
                       
-                    <form action="{{action('PassportController@store')}}" id="fr-buscar" method="post">
+                    <form action="{{url('admin/busqueda')}}" id="fr-buscar" method="post">
+                        @csrf
                         <div class="col-md-4">
                            
                                 <div class="form-group">
                                     <label for="buscarconductor">Campo a buscar</label>
-                                    <input type="text" class="form-control" id="buscarconductor" placeholder="Ingrese campo a buscar">
+                                    <input type="text" name="conductor" class="form-control" id="buscarconductor" placeholder="Ingrese campo a buscar">
                                 </div>
                             
                         </div>
@@ -58,7 +61,7 @@
                 </div>
 
             </div>
-
+            
 
             <div class="box">
                 <div class="box-body">
@@ -70,16 +73,17 @@
         </div>
     </div>
 </div>
+<!-- 0 sin servicio, 1 esperando, 2 en servicio -->
+@foreach($geos as $geo)
+{{ $geo->status }}
+
+@endforeach
 
 <script>
 function initMap(){
-    var locations = [
-    @foreach($geos as $geo)
+   /* var locations = [
    
-      ['{{ $geo->user->name }} {{ $geo->user->lastname }}', {{ $geo->latitude }}, {{ $geo->longitude }}, 4],
-      
-      @endforeach
-    ];
+    ];*/
 
 
      var map = new google.maps.Map(document.getElementById('imap'), {
@@ -97,6 +101,28 @@ var marker, i;
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
     });
+
+
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          parking: {
+            icon: iconBase + 'icon_red.png'
+          },
+          enespera: {
+            icon: iconBase + 'icon_yellow.png'
+          },
+          enservicio: {
+            icon: iconBase + 'icon_green.png'
+          }
+        };
+
+        var features = [
+          {
+            position: new google.maps.LatLng(-33.91721, 151.22630),
+            type: 'info'
+          }, 
+        ];
+
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {

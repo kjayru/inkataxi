@@ -17,45 +17,58 @@ use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Geoposition;
 use App\User;
-
-class BusquedaController extends VoyagerBaseController
+        class BusquedaController extends VoyagerBaseController
 {
     public function inicio()
     {
-        $geos = Geoposition::all();
-        return view('vendor.voyager.busqueda.index',['geos' => $geos]);
+        $users = User::where('role_id',2)->get();
+
+       
+
+              
+        
+        return view('vendor.voyager.busqueda.index',['geos' => $users]);
     }
 
     public function inicioNew()
     {
-        return view('vendor.voyager.busqueda.index');
+        return view('vendor.voyager.voyager.index');
     }
 
     public function busqueda()
     {
+
         return view('vendor.voyager.busqueda.index');
     }
 
     public function getdatos()
     {
-        return view('vendor.voyager.busqueda.index');
+        $result = "";
+        return response()->json(['resultado' => $result]);
     }
 
 
-    public function store(Request $request)
+  public function salvar(Request $request)
   {
 
-    $contact = [];
+    dd($request);
+    
+    /*$contact = [];
 
     $contact['name'] = $request->get('name');
     $contact['email'] = $request->get('email');
     $contact['msg'] = $request->get('msg');
 
     // Mail delivery logic goes here
-
-    flash('Your message has been sent!')->success();
-
-    return redirect()->route('contact.create');
+    */
+    // ('Your message has been sent!')->success();
+    
+    //return redirect()->route('voyager.busqueda.crear');
+      
+      
+    
+    //$geos = Geoposition::all();    
+    return view('vendor.voyager.busqueda.index',['geos'=>$geos]);
 
   }
 }
