@@ -13,7 +13,7 @@
                 <div class="box-body">
                     <div class="opciones">
                       
-                    <form action="" id="fr-buscar" method="post">
+                    <form action="{{action('PassportController@store')}}" id="fr-buscar" method="post">
                         <div class="col-md-4">
                            
                                 <div class="form-group">

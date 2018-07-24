@@ -24,8 +24,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('conductores/{id}','Voyager\ConductorController@inicioUpdate');
     Route::delete('conductores/{id}','Voyager\ConductorController@inicioDelete');
 
-    Route::get('busqueda','Voyager\BusquedaController@inicio');
-    Route::post('busqueda','Voyager\BusquedaController@inicioNew');
+    Route::get('busqueda','Voyager\BusquedaController@inicio')->name('busqueda.create');
+    Route::post('busqueda','Voyager\BusquedaController@inicioNew')->name('busqueda.store');;
     Route::get('conductores/{word}','Voyager\BusquedaController@busqueda');
     Route::get('conductores/{id}','Voyager\ConductorController@getdatos');
  
