@@ -30,21 +30,21 @@
                                     <li>
                                         <div class="checkbox">
                                             <label for="disponibilidad">
-                                              <input type="checkbox" name="disponibilidad" id="disponibilidad" value="1">Disponible <span>51</span>
+                                              <input type="checkbox" name="disponibilidad" id="disponibilidad" value="1" onclick="disponible()">Disponible <span>51</span>
                                             </label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="checkbox">
                                             <label for="enservicio">
-                                                <input type="checkbox" name="enservicio" id="enservicio" value="1">Disponible <span>331</span>
+                                                <input type="checkbox" name="enservicio" id="enservicio" value="1" onclick="servicio()">En servicio <span>331</span>
                                             </label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="checkbox">
                                             <label for="fueraservicio">
-                                                <input type="checkbox" name="fueraservicio" id="fueraservicio" value="1">Disponible <span>0</span>
+                                                <input type="checkbox" name="fueraservicio" id="fueraservicio" value="1" onclick="fuera()">Fuera de Servicio <span>0</span>
                                             </label>
                                         </div>
                                     </li>
@@ -74,55 +74,111 @@
     </div>
 </div>
 <!-- 0 sin servicio, 1 esperando, 2 en servicio -->
-@foreach($geos as $geo)
-{{ $geo->status }}
 
-@endforeach
 
 <script>
-function initMap(){
+function disponible(){
+    var dispo = document.getElementById('disponibilidad');
+   
+   if(dispo.checked==true){
+    initMap('disponibilidad');
+   }else{
+    initMap();
+   }
+}
+
+function servicio(){
+    var dispo2 = document.getElementById('enservicio');
+   
+   if(dispo2.checked==true){
+    initMap('enservicio');
+   }else{
+    initMap();
+   }
+}
+
+function fuera(){
+    var dispo3 = document.getElementById('fueraservicio');
+   
+   if(dispo3.checked==true){
+    initMap('fueraservicio');
+   }else{
+    initMap(); 
+   }
+}
+
+
+function initMap(tipo){
     var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
+    var locations 
 
-    var locations = [
-        @foreach($geos as $geo)
-        ['Bondi Beach', -33.890542, 151.274856, 4, iconBase + 'red-circle.png'],
-        @endforeach
-    ];
-
-
-     var map = new google.maps.Map(document.getElementById('imap'), {
-      zoom: 11,
-      center: new google.maps.LatLng(-12.1021498, -77.0364146),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
- var infowindow = new google.maps.InfoWindow();
-
-var marker, i;
-var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
-var icons = {
-    parking: {
-        icon: iconBase + 'red-circle.png'
-    },
-    enespera: {
-        icon: iconBase + 'ylw-blank.png'
-    },
-    enservicio: {
-        icon: iconBase + 'grn-circle.png'
+    switch (tipo) {
+        case 'disponibilidad':
+             locations = [
+                @foreach($geos as $geo)
+                    @if($geo->geoposition['latitude'])
+                      @if(@$geo->status==1)
+                        [ '{{$geo->name}}',{{ $geo->geoposition['latitude'] }} ,{{ $geo->geoposition['longitude'] }}, 4,'grn-circle.png'],
+                      @endif
+                    @endif
+                @endforeach
+            ];
+        break;
+        case 'enservicio':
+             locations = [
+                    @foreach($geos as $geo)
+                        @if($geo->geoposition['latitude'])
+                          @if(@$geo->status==2)
+                            [ '{{$geo->name}}',{{ $geo->geoposition['latitude'] }} ,{{ $geo->geoposition['longitude'] }}, 4,'ylw-blank.png'],
+                           @endif
+                        @endif
+                    @endforeach
+                ];
+        break;
+        case 'fueraservicio':
+             locations = [
+                    @foreach($geos as $geo)
+                        @if($geo->geoposition['latitude'])
+                          @if(@$geo->status==0)
+                            [ '{{$geo->name}}',{{ $geo->geoposition['latitude'] }} ,{{ $geo->geoposition['longitude'] }}, 4,'red-circle.png'],
+                            @endif
+                        @endif
+                    @endforeach
+                ];
+        break;
+    
+        default:
+         locations = [
+                @foreach($geos as $geo)
+                    @if($geo->geoposition['latitude'])
+                        [ '{{$geo->name}}',{{ $geo->geoposition['latitude'] }} ,{{ $geo->geoposition['longitude'] }}, 4,  @if(@$geo->status==2)  'ylw-blank.png' @elseif(@$geo->status==1)  'grn-circle.png' @else  'red-circle.png' @endif
+                        ],
+                    @endif
+                @endforeach
+            ];
+        break;
     }
-};
+        
+
+        var map = new google.maps.Map(document.getElementById('imap'), {
+        zoom: 11,
+        center: new google.maps.LatLng(-12.1021498, -77.0364146),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+                                 
+
 
 
     for (i = 0; i < locations.length; i++) {  
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map,
-        icon: icons[feature.type].icon,
+        icon:iconBase+locations[i][4]
     });
-
-
-       
-
         
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {

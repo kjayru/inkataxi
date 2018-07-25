@@ -21,7 +21,7 @@ use App\User;
 {
     public function inicio()
     {
-        $users = User::where('role_id',2)->get();
+        $users = User::where('role_id',2)->with('geoposition')->get();
 
        
 
