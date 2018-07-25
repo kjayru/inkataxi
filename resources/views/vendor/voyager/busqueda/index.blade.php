@@ -81,9 +81,13 @@
 
 <script>
 function initMap(){
-   /* var locations = [
-   
-    ];*/
+    var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
+
+    var locations = [
+        @foreach($geos as $geo)
+        ['Bondi Beach', -33.890542, 151.274856, 4, iconBase + 'red-circle.png'],
+        @endforeach
+    ];
 
 
      var map = new google.maps.Map(document.getElementById('imap'), {
@@ -92,38 +96,34 @@ function initMap(){
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var infowindow = new google.maps.InfoWindow();
+ var infowindow = new google.maps.InfoWindow();
 
 var marker, i;
+var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/';
+var icons = {
+    parking: {
+        icon: iconBase + 'red-circle.png'
+    },
+    enespera: {
+        icon: iconBase + 'ylw-blank.png'
+    },
+    enservicio: {
+        icon: iconBase + 'grn-circle.png'
+    }
+};
+
 
     for (i = 0; i < locations.length; i++) {  
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
+        map: map,
+        icon: icons[feature.type].icon,
     });
 
 
-var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        var icons = {
-          parking: {
-            icon: iconBase + 'icon_red.png'
-          },
-          enespera: {
-            icon: iconBase + 'icon_yellow.png'
-          },
-          enservicio: {
-            icon: iconBase + 'icon_green.png'
-          }
-        };
+       
 
-        var features = [
-          {
-            position: new google.maps.LatLng(-33.91721, 151.22630),
-            type: 'info'
-          }, 
-        ];
-
-
+        
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
         infowindow.setContent(locations[i][0]);
