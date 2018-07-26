@@ -15,14 +15,17 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\User;
 
 class UsuarioController  extends VoyagerBaseController
 {
     
 
     public function validar(){
-        return view('vendor.voyager.usuario.validar');
+
+        $users = User::all();
+
+        return view('vendor.voyager.usuario.validar',['users'=>$users]);
     }
 
     

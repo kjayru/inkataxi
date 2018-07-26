@@ -21,7 +21,7 @@
                            
                                 <div class="form-group">
                                     <label for="buscarconductor">Campo a buscar</label>
-                                    <input type="text" name="conductor" class="form-control" id="buscarconductor" placeholder="Ingrese campo a buscar">
+                                    <input type="text" name="conductor" class="form-control" id="conductor" placeholder="Ingrese campo a buscar">
                                 </div>
                             
                         </div>
@@ -77,6 +77,15 @@
 
 
 <script>
+let conductor = document.querySelector(".buscarconductor");
+
+conductor.addEventListener('click',function(e){
+    e.preventDefault();
+   
+    let palabra = document.querySelector("#conductor").value;
+    console.log("buscarr "+palabra);
+});
+
 function disponible(){
     var dispo = document.getElementById('disponibilidad');
    

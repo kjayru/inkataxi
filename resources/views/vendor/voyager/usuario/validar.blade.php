@@ -6,34 +6,29 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
+            
+                <table class="table table-hover table-responsive">
+                        <thead>
+                             <tr>
+                                 <th></th>
+                                 <th>Nombres</th>
+                                 <th>Email</th>
+                                 <th>Celular</th>
+                                 <th></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                         @foreach($users as $key => $user)
+                         <tr>
+                             <th>{{ $key + 1 }}</th>
+                             <td>{{ $user->name}} {{ $user->lastname }}</td>
+                             <td>{{ $user->email }}</td>
+                             <td>{{ $user->cellphone }}</td>
+                             <td></td>
+                         </tr>
+                         @endforeach
+                     </tbody>
+                </table>
             
 
         </div>
