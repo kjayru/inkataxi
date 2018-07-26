@@ -15,7 +15,7 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\User;
 
 class ClienteController extends VoyagerBaseController
 {
@@ -26,8 +26,9 @@ class ClienteController extends VoyagerBaseController
      */
     public function inicio()
     {
+        $users = User::where('role_id',1)->get();
       
-         return view('vendor.voyager.cliente.show');
+         return view('vendor.voyager.cliente.show',['users'=> $users]);
         
     }
 
