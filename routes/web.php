@@ -30,11 +30,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('conductores/{id}','Voyager\ConductorController@getdatos');
  
     
-    Route::get('asignacion','Voyager\ConductorController@asignacion');
-    Route::post('asignacion','Voyager\ConductorController@asignacionNew');
-    Route::get('asignacion/{id}/edit','Voyager\ConductorController@asignacionEdit');
-    Route::put('asignacion/{id}','Voyager\ConductorController@asignacionUpdate');
-    Route::delete('asignacion/{id}','Voyager\ConductorController@asignacionDelete');
+    Route::get('asignacion','Voyager\AsignacionController@mostrar');
+    Route::post('asignacion','Voyager\AsignacionController@asignacionNew');
+    Route::get('asignacion/{id}/edit','Voyager\AsignacionController@asignacionEdit');
+    Route::put('asignacion/{id}','Voyager\AsignacionController@asignacionUpdate');
+    Route::delete('asignacion/{id}','Voyager\AsignacionController@asignacionDelete');
     
     Route::get('clientes','Voyager\ClienteController@inicio');
     Route::post('clientes','Voyager\ClienteController@inicioNew');

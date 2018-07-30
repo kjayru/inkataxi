@@ -15,11 +15,13 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\Geoposition;
+use App\User;
 class AsignacionController extends VoyagerBaseController
 {
     public function mostrar()
     {
-        return view('vendor.voyager.asignacion.index');
+        $users = User::where('role_id',2)->with('geoposition')->get();
+        return view('vendor.voyager.asignacion.index',['geos' => $users]);
     }
 }

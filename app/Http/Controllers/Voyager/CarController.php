@@ -20,7 +20,7 @@ use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 class CarController extends VoyagerBaseController
 {
    public function tipoAuto(){
-       return view('vendor.voyager.auto.tipoPago');
+       return view('vendor.voyager.auto.tipoauto');
    }
 
    public function autoColor()
