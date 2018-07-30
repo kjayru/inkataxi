@@ -83,7 +83,7 @@ conductor.addEventListener('click',function(e){
     e.preventDefault();
    
     let palabra = document.querySelector("#conductor").value;
-    console.log("buscarr "+palabra);
+    console.log("buscar "+palabra);
 });
 
 function disponible(){

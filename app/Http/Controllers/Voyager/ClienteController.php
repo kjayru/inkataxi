@@ -32,6 +32,12 @@ class ClienteController extends VoyagerBaseController
         
     }
 
+    public function viajes($id){
+
+
+        return view('vendor.voyager.cliente.viajes');
+
+    }
 
     /**
      * Show the form for creating a new resource.

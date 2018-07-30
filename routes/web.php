@@ -41,6 +41,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('clientes/{id}/edit','Voyager\ClienteController@inicioEdit');
     Route::put('clientes/{id}','Voyager\ClienteController@inicioUpdate');
     Route::delete('clientes/{id}','Voyager\ClienteController@inicioDelete');
+
+    Route::get('clientes/viajes/{id}','Voyager\ClienteController@viajes');
     
     Route::get('validar','Voyager\UsuarioController@validar');
     Route::post('validar','Voyager\UsuarioController@validarNew');
