@@ -11,10 +11,10 @@
                         <thead>
                              <tr>
                                  <th></th>
-                                 <th>servicio</th>
+                                 <th>Nombre</th>
                                  <th>Comisión</th>
                                  <th>estado</th>
-                                 <th></th>
+                                 <th>Acciones</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -24,7 +24,10 @@
                              <td>{{ $service->name }}</td>
                              <td>{{ $service->comision }}</td>
                              <td>{{ $service->status }}</td>
-                             <td></td>
+                             <td>
+                                    <a href="#" class="client-servicio-edit" data-id="{{$service->id}}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-delete" data-id="{{$service->id}}"><i class="far fa-trash-alt"></i></a> 
+                             </td>
                          </tr>
                          @endforeach
                      </tbody>
