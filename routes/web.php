@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('conductores','Voyager\ConductorController@inicio');
     Route::post('conductores','Voyager\ConductorController@inicioNew');
-    Route::get('conductores/{id}/edit','Voyager\ConductorController@inicioEdit');
+    Route::get('conductores/detalles/{id}','Voyager\ConductorController@inicioEdit');
     Route::put('conductores/{id}','Voyager\ConductorController@inicioUpdate');
     Route::delete('conductores/{id}','Voyager\ConductorController@inicioDelete');
 

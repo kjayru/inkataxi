@@ -16,6 +16,7 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\User;
+use App\Travel;
 
 class ConductorController extends VoyagerBaseController
 {
@@ -28,14 +29,17 @@ class ConductorController extends VoyagerBaseController
     {
       
         $users = User::where('role_id',2)->get();
-         return view('vendor.voyager.conductor.index',['users'=>$users]);
+        return view('vendor.voyager.conductor.index',['users'=>$users]);
         
     }
 
     public function inicioEdit($id)
     {
-      
-         return view('vendor.voyager.conductor.index');
+        $travels = Travel::where('idtaxista',$id)->get();
+        
+       // dd($travels);
+
+        return view('vendor.voyager.conductor.conductordetalle',['travels'=>$travels]);
         
     }
 

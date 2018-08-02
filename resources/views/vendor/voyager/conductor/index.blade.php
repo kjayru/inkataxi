@@ -38,7 +38,7 @@
                         </td>
                        <td></td>
                         <td>
-                            <a href="#" class="user-detalle"><i class="fas fa-rocket"></i></a>
+                            <a href="/admin/conductores/detalles/{{ $user->id }}" class="user-detalle"><i class="fas fa-rocket"></i></a>
                             <a href="#" class="user-action @if($user->status==1) desactivado  @else activado @endif" data-estado="@if($user->status==1) 1 @else 2 @endif"><i class="fas fa-lock"></i></a>
                         </td>
                     </tr>
