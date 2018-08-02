@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         
-            <table class="table table-hover table-responsive">
+            <table class="table table-hover table-responsive" id="tb-contacto">
                     <thead>
                             <tr>
                                 <th></th>

@@ -206,17 +206,17 @@ return [
         '/css/mainback.css',
         '//adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css',
         '/plugins/morris/morris.css',
-       
         '//use.fontawesome.com/releases/v5.1.1/css/all.css',
        
     ],
 
     'additional_js' => [
-        '/js/mainback.js?v=2',
         
         '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js',
         '//use.fontawesome.com/releases/v5.1.1/js/all.js',
-        //'js/custom.js',
+        '/plugins/datatables.net/js/jquery.dataTables.min.js',
+        '/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js',
+        '/js/mainback.js?v=8',
     ],
 
     'googlemaps' => [

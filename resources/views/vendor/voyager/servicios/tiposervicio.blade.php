@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             
-                <table class="table table-hover table-responsive">
+                <table class="table table-hover table-responsive" id="tb-tiposervicio">
                         <thead>
                              <tr>
                                  <th></th>

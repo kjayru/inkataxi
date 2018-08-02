@@ -1,3 +1,8 @@
+@extends('voyager::master')
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@stop
+@section('content')
 
 <div class="col-md-3">
 
@@ -51,15 +56,6 @@
                 </div>
         </div>
 
-
-
-
-
-
-
-
-
-
 </div>
 <div class="col-md-8">
     <div class="box box-primary">
@@ -74,3 +70,5 @@
         </div>
     </div>
 </div>
+
+@stop

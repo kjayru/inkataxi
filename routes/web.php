@@ -18,6 +18,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::get('/dash','Voyager\DashboardController@inicio');
+
     Route::get('conductores','Voyager\ConductorController@inicio');
     Route::post('conductores','Voyager\ConductorController@inicioNew');
     Route::get('conductores/{id}/edit','Voyager\ConductorController@inicioEdit');
@@ -133,3 +136,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="tb-conductor">
                   <thead>
                       <tr>
                           <th>#</th>
@@ -18,7 +18,7 @@
                           <th>EMAIL</th>
                           <th>CELULAR</th>
                           <th>DIRECCION</th>
-                          <th></th>
+                          <th>Opciones</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -36,7 +36,7 @@
                         <td>
                             {{ $user->cellphone }}
                         </td>
-                       
+                       <td></td>
                         <td>
                             <a href="#" class="user-detalle"><i class="fas fa-rocket"></i></a>
                             <a href="#" class="user-action @if($user->status==1) desactivado  @else activado @endif" data-estado="@if($user->status==1) 1 @else 2 @endif"><i class="fas fa-lock"></i></a>
