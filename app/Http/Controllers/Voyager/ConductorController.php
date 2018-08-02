@@ -43,7 +43,14 @@ class ConductorController extends VoyagerBaseController
         
     }
 
-    public function asignacion()
+    public function estado(Request $request)
+    {
+      
+         return view('vendor.voyager.conductor.asignacion');
+        
+    }
+
+    public function viajemapa(Request $request)
     {
       
          return view('vendor.voyager.conductor.asignacion');
