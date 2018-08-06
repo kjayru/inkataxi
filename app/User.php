@@ -32,6 +32,8 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasOne('App\Geoposition');
     }   
     
-    
+    public function qualifications(){
+        return $this->hasMany('App\Qualification');
+    }
    
 }

@@ -17,6 +17,7 @@ use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\User;
 use App\Travel;
+use App\Qualification;
 
 class ConductorController extends VoyagerBaseController
 {
@@ -38,8 +39,19 @@ class ConductorController extends VoyagerBaseController
         $travels = Travel::where('idtaxista',$id)->get();
         
        // dd($travels);
-
-        return view('vendor.voyager.conductor.conductordetalle',['travels'=>$travels]);
+       $conductor = User::where('id',$id)->first();
+       //viajes
+        $viajes = Travel::where('idtaxista',$id)->count();
+       //calificacion
+        //$puntos = Qualification::where('user_id',$id)->sum();
+        $puntos = DB::table('qualifications')
+                            ->select(DB::raw('SUM(puntaje) as total'))->get();
+        $pto = $puntos[0]->total;
+      
+                            //puntos
+        $calificacion = ($viajes*100)/$puntos[0]->total; 
+       
+        return view('vendor.voyager.conductor.conductordetalle',['travels'=>$travels,'conductor'=>$conductor,'viajes'=>$viajes,'puntos'=>$pto,'calificacion'=>$calificacion]);
         
     }
 
@@ -52,10 +64,16 @@ class ConductorController extends VoyagerBaseController
 
     public function viajemapa(Request $request)
     {
-      
-         return view('vendor.voyager.conductor.asignacion');
+        
+        $origlatx = $request->orig_latx;
+        $origlaty = $request->orig_laty;
+        $destlatx = $request->dest_latx;
+        $destlaty = $request->dest_laty;
+
+         return view('vendor.voyager.conductor.conductormap');
         
     }
+    
 
     /**
      * Show the form for creating a new resource.

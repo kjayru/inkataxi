@@ -66,3 +66,11 @@ section.content-header {
     color: white;
     font-size: 8px !important;
 }
+.datosuser li {
+    display: inline-flex;
+}
+.datosuser dd span {
+    display: inline;
+    margin-right: 10px;
+    margin-left: 6px;
+}
