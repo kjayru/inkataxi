@@ -74,3 +74,6 @@ section.content-header {
     margin-right: 10px;
     margin-left: 6px;
 }
+div#map {
+    height: 700px;
+}

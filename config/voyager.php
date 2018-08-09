@@ -216,7 +216,8 @@ return [
         '//use.fontawesome.com/releases/v5.1.1/js/all.js',
         '/plugins/datatables.net/js/jquery.dataTables.min.js',
         '/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js',
-        '/js/mainback.js?v=8',
+        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+        '/js/mainback.js?v=10',
     ],
 
     'googlemaps' => [

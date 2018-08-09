@@ -70,11 +70,21 @@ class ConductorController extends VoyagerBaseController
         $destlatx = $request->dest_latx;
         $destlaty = $request->dest_laty;
 
-         return view('vendor.voyager.conductor.conductormap');
+         return view('vendor.voyager.conductor.conductormap',['origlatx'=>$origlatx,'origlaty'=>$origlaty,'destlatx'=>$destlatx,'destlaty'=>$destlaty]);
         
     }
     
 
+    public function sendestado(Request $request, $id){
+        
+        $conductor = User::find($id);
+
+        $conductor->status = $request->estado;
+
+        $conductor->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
     /**
      * Show the form for creating a new resource.
      *

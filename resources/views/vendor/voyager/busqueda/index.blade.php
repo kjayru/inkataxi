@@ -199,6 +199,6 @@ function initMap(tipo){
 }
 </script>
     <script async defer
-      src="//maps.googleapis.com/maps/api/js?key=AIzaSyB941_zJGySG2jmlEscSFaiv4KtVvbx4Vg&callback=initMap">
+      src="//maps.googleapis.com/maps/api/js?key=AIzaSyB8Z2h3V6rt4HE4zeo0dSohS1VnhRaoAyU&callback=initMap">
 </script>
 @stop

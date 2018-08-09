@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('conductores/{word}','Voyager\BusquedaController@busqueda');
     Route::get('conductores/{id}','Voyager\ConductorController@getdatos');
     Route::post('conductores/mapa','Voyager\ConductorController@viajemapa')->name('voyager.conductor.viajemapa');
- 
+    Route::put('conductores/sendestado/{id}','Voyager\ConductorController@sendestado');
     
     Route::get('asignacion','Voyager\AsignacionController@mostrar');
     Route::post('asignacion','Voyager\AsignacionController@asignacionNew');
