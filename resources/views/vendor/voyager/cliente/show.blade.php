@@ -30,7 +30,7 @@
                     <td>
                         <a href="clientes/viajes/{{ $user->id }}" class="client-detalle"><i class="fas fa-rocket"></i></a>
                         <a href="#" class="client-action @if($user->status==1) desactivado  @else activado @endif" data-estado="@if($user->status==1) 1 @else 2 @endif"><i class="fas fa-lock"></i></a>  
-                        <a href="#" class="client-delete"><i class="far fa-trash-alt"></i></a>
+                        <a href="#" class="client-delete" data-id="{{ $user->id }}"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 @endforeach

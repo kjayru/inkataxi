@@ -5,8 +5,18 @@ include('/plugins/morris/morris.min.js');
 function include(url) {
     document.write('<script src="' + url + '" type="text/javascript"></script>');
 }
+var token = '';
 $(function() {
     'use strict'
+    const meta = document.getElementsByTagName("meta");
+
+    for(var i=0;i<meta.length;i++){
+       if(meta[i].getAttribute("name")=='csrf-token'){
+            token = meta[i].getAttribute("content");
+       }
+    }
+
+    
 try {
     
 
@@ -92,42 +102,76 @@ try {
                 document.querySelector(".modal-title").innerHTML=`Usuario no activo`;
                 document.getElementById('estado').value='1';
             }
+            window.location.reload();
+        });
+    });   
+  
+});
+
+try {
+    let conductorEstado = document.getElementById("btn-conductor-estado");
+  
+
+    conductorEstado.addEventListener('click',function(){
+        
+        let id = document.getElementById("iduser").value;
+        let estado = document.getElementById("estado").value;
+    
+        let url = `/admin/conductores/sendestado/${id}`;
+    
+        let method = document.querySelector("input[name$='_method']").value;
+        let token = document.querySelector("input[name$='_token']").value;
+    
+        var data = {'id': id ,'estado':estado,'_method':method,'_token':token};
+        console.log(`valor id ${method}`);
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(data),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('error: ', error))
+            .then(response => console.log('Success: ',response));
+    
+            $("#estadoModal").modal('hide');
+        window.location.reload();
+    });    
+
+  
+} catch (error) {
+    console.log(error);
+}
+
+try {
+   //cliente delete
+    let deleteuser = document.querySelectorAll(".client-delete");
+    let url = "";
+
+    Array.from(deleteuser).forEach(link => {
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+            console.log("click delete");
+            let id = this.dataset.id;
+
+            let data = ({"id":id,"_token":token, "_method":"delete"});
+
+            fetch(url,{
+                method:'POST',
+                body:JSON.stringify(data),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            }).then(res=>res.json());
+            console.log(data);
+
+            //window.location.reload();
         });
     });
+} catch (error) {
+    console.log(error);
+}
 
-  
-
-    
-  
-});
-
-
-let conductorEstado = document.getElementById("btn-conductor-estado");
-
-conductorEstado.addEventListener('click',function(){
-    
-    let id = document.getElementById("iduser").value;
-    let estado = document.getElementById("estado").value;
-
-    let url = `/admin/conductores/sendestado/${id}`;
-
-    let method = document.querySelector("input[name$='_method']").value;
-    let token = document.querySelector("input[name$='_token']").value;
-
-    var data = {'id': id ,'estado':estado,'_method':method,'_token':token};
-    console.log(`valor id ${method}`);
-    fetch(url,{
-        method:'POST',
-        body:JSON.stringify(data),
-        headers:{
-            'Content-Type':'application/json'
-        }
-    }).then(res => res.json())
-        .catch(error => console.error('error: ', error))
-        .then(response => console.log('Success: ',response));
-
-        $("#estadoModal").modal('hide');
-});
 //send post data
 
 

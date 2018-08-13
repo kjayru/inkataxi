@@ -217,7 +217,7 @@ return [
         '/plugins/datatables.net/js/jquery.dataTables.min.js',
         '/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js',
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
-        '/js/mainback.js?v=10',
+        '/js/mainback.js?v=12',
     ],
 
     'googlemaps' => [

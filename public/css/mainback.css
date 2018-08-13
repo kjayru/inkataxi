@@ -1,9 +1,9 @@
-a.user-action ,a.user-detalle{
+a.user-action ,a.user-detalle, .client-detalle,a.client-action, .client-delete{
     
     border-radius: 50%;
     padding: 5px;
 }
-.desactivado{
+.desactivado, .client-delete{
     background: #f53838;
     border: 1px solid #f53838;
     color:white;
@@ -20,7 +20,7 @@ a.user-action:hover,a.user-detalle{
     color:#eeeeee;
 }
 
-a.user-detalle{
+a.user-detalle, .client-detalle{
     border:1px solid #2692c1;
     background:#2692c1;
     color:white;
