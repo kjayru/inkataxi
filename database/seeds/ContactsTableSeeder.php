@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use App\Contact;
 class ContactsTableSeeder extends Seeder
 {
@@ -16,3 +17,4 @@ class ContactsTableSeeder extends Seeder
         factory(Contact::class, $contactQuantity)->create();
     }
 }
+

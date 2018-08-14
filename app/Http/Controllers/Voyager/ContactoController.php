@@ -31,6 +31,14 @@ class ContactoController extends VoyagerBaseController
     }
 
     public function contactoUpdate(Request $request, $id){
+        $contacto = Contact::find($id);
+        
+        $contacto->respuesta = $request->respuesta;
+
+        $contacto->save();
+
+        return redirect('\admin\contacto');
+
         
     }
 }

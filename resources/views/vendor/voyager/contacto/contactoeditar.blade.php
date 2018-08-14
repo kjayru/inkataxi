@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <form action="/admin/contacto" method="POST">
+                <form action="/admin/contacto/{{ $mensaje->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
