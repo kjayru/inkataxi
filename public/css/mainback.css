@@ -1,4 +1,4 @@
-a.user-action ,a.user-detalle, .client-detalle,a.client-action, .client-delete{
+a.user-action ,a.user-detalle, .client-detalle,a.client-action, .client-delete,.contact-event{
     
     border-radius: 50%;
     padding: 5px;
@@ -8,7 +8,10 @@ a.user-action ,a.user-detalle, .client-detalle,a.client-action, .client-delete{
     border: 1px solid #f53838;
     color:white;
 }
-
+.contact-event:hover{
+    background: #eeeeee;
+    color:#202020;
+}
 .activado{
   
   background:rgb(120, 198, 2);
@@ -76,4 +79,17 @@ section.content-header {
 }
 div#map {
     height: 700px;
+}
+.group {
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+.green{
+    background: #0cd20c;
+    color:#ffffff;
+}
+.panel-block {
+    display: grid;
+    background: white;
+    padding: 30px 10px 30px 10px;
 }

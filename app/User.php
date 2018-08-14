@@ -9,6 +9,8 @@ class User extends \TCG\Voyager\Models\User
 {
     use Notifiable;
 
+    const ACTIVO = 1;
+    const DESACTIVO = 0;
     /**
      * The attributes that are mass assignable.
      *

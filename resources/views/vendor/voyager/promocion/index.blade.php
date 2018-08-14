@@ -25,12 +25,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        @foreach($promos as $key => $promo)
                         <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <th>{{ $key + 1 }}</th>
+                            <td>{{ $promo->code }}</td>
+                            <td>{{ $promo->desde}}</td>
+                            <td>{{ $promo->promotiontypes[0]->name }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -39,7 +39,7 @@
                                 <a href="#" class="client-delete" data-id=""><i class="far fa-trash-alt"></i></a> 
                             </td>
                         </tr>
-                       
+                       @endforeach
                     </tbody>
                 </table>
 

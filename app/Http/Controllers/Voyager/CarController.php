@@ -15,12 +15,13 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\CarType;
 
 class CarController extends VoyagerBaseController
 {
    public function tipoAuto(){
-       return view('vendor.voyager.auto.tipoauto');
+       $tipos = CarType::all();
+       return view('vendor.voyager.auto.tipoauto',['tipos'=>$tipos]);
    }
 
    public function autoColor()

@@ -39,6 +39,14 @@ class ClienteController extends VoyagerBaseController
 
     }
 
+    public function deleteuser($id){
+        $user = User::find($id);
+
+        $user->delete();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

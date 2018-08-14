@@ -5,37 +5,33 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+        <div class="panel-block">
+            <div class="col-md-12">
+                <div class="bloque">
+                    <p>Nombre y Apellidos:<span>{{ $mensaje->name }}</span></p>
+                    <p>Correo: <span>{{ $mensaje->email }}</span></p>
+                    <p>Telefono: <span>{{ $mensaje->phone }}</span></p>
+                    
                 </div>
             </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
+            <div class="col-md-12">
+                <form action="/admin/contacto" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-group">
+                        <label for="pregunta">Pregunta</label>
+                        <textarea  name="pregunta" class="form-control" >{{ $mensaje->pregunta }}</textarea>
+                    </div>
+                             
+                    <div class="form-group">
+                        <label for="respuesta">Respuesta</label>
+                        <textarea name="respuesta" class="form-control"  placeholder="Respuesta">{{ @$mensaje->respuesta }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Enviar">
+                    </div>
+                </form>
             </div>
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                </div>
-            </div>
-            
-
         </div>
     </div>
 </div>

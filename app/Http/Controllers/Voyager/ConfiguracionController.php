@@ -15,12 +15,13 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\Configuration;
 
 class ConfiguracionController extends VoyagerBaseController
 {
     public function configurar()
     {
-        return view('vendor.voyager.configuracion.index');
+        $configuracion = Configuration::first();
+        return view('vendor.voyager.configuracion.index',['configura'=>$configuracion]);
     }
 }

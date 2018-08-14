@@ -21,19 +21,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach($paytypes as $key => $tipos)
                             <tr>
-                                <th></th>
+                                <th>{{ $key + 1 }}</th>
                                 
                                 
-                                <td></td>
-                                <td></td>
+                                <td>{{ $tipos->nombre }}</td>
+                                <td>Activo</td>
                                 <td>
                                     <a href="#" class="client-servicio-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
                                     <a href="#" class="client-delete" data-id=""><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                     </table>
                 

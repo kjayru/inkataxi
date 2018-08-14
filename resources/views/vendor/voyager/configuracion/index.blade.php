@@ -12,17 +12,17 @@
                            
                         <div class="group">
                                 <label for="">Número de intentos</label>
-                            <input type="text" name="intentos" class="form-control" placeholder="Número de intentos">
+                            <input type="text" name="intentos" class="form-control" value="{{ @$configura->numintentos }}" placeholder="Número de intentos">
                         </div>
                 
                         <div class="group">
                             <label for="">Tiempo de espera (minutos)</label>
-                            <input type="text" name="tiempoespera" class="form-control" placeholder="tiempo de espera">
+                            <input type="text" name="tiempoespera" class="form-control" value="{{ @$configura->tiempoespera }}" placeholder="tiempo de espera">
                         </div>
 
                         <div class="group">
                             <label for="">Hora Punta (mañana)</label>
-                            <input type="text" name="horapuntamaninicio" class="form-control" placeholder="hora punta">
+                            <input type="text" name="horapuntamaninicio" class="form-control" value="{{ @$configura->horapuntainicial }}" placeholder="hora punta">
                         </div>
 
                         <div class="group">
@@ -33,7 +33,7 @@
 
                         <div class="group">
                             <label for="">Costo por Minuto (S/)</label>
-                            <input type="text" name="costominuto" class="form-control" placeholder="Costo por minuto">
+                            <input type="text" name="costominuto" class="form-control" value="{{ @$configura->costokm }}" placeholder="Costo por minuto">
                         </div>
 
                         <div class="group">
@@ -72,13 +72,13 @@
                     
                         <div class="group">
                             <label for="">Límite kilometro normal</label>
-                            <input type="text" name="lkn" class="form-control" placeholder="Límite kilometro normal">
+                            <input type="text" name="lkn" class="form-control" value="{{ @$configura->limitekm }}" placeholder="Límite kilometro normal">
                         </div>
                 
 
                        <div class="group">
                             <label for="">Tiempo de cortesia (Min)</label>
-                            <input type="text" name="tiempocortesia" class="form-control" placeholder="Tiempo de cortesia">
+                            <input type="text" name="tiempocortesia" class="form-control" value="{{ @$configura->tiempocortesia }}" placeholder="Tiempo de cortesia">
                         </div>
 
                         <div class="group">
@@ -112,7 +112,7 @@
 
                
             </div>
-            <div class="group">
+            <div class="col-md-12 text-center">
                     <input type="button" class="btn btn-success" value="Guardad">
             </div>
         </div>

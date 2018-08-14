@@ -15,10 +15,22 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
+use App\Contact;
 
 class ContactoController extends VoyagerBaseController
 {
     public function mostrar(){
-        return view('vendor.voyager.contacto.index');
+        $contactos = Contact::all();
+        return view('vendor.voyager.contacto.index',['contactos'=>$contactos]);
+    }
+
+    public function getedit($id){
+        $mensaje = Contact::find($id);
+
+        return view('vendor.voyager.contacto.contactoeditar',['mensaje'=>$mensaje]);
+    }
+
+    public function contactoUpdate(Request $request, $id){
+        
     }
 }

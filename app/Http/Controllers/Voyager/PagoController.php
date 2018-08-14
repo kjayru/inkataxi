@@ -15,13 +15,14 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use App\PayType;
 class PagoController extends VoyagerBaseController
 {
     public function tipoPago()
     {
+        $paytypes = PayType::all();
 
-        return view('vendor.voyager.pagos.tipospago');
+        return view('vendor.voyager.pagos.tipospago',['paytypes'=>$paytypes]);
     }
 
 

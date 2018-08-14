@@ -22,19 +22,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        @foreach($contactos as $key => $contacto)
                         <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <th>{{ $key + 1 }}</th>
+                            <td>{{ $contacto->name }}</td>
+                            <td>{{ $contacto->email }}</td>
+                            <td>{{ $contacto->phone }}</td>
                             
                             <td>
-                                <a href="#" class="client-servicio-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="client-delete" data-id=""><i class="far fa-trash-alt"></i></a> 
+                                <a href="/admin/contacto/{{ $contacto->id }}/edit" class="contact-event green"><i class="far fa-comment-dots"></i></a>
+                                
                             </td>
                         </tr>
-                       
+                       @endforeach
                     </tbody>
                 </table>
             

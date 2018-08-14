@@ -155,7 +155,7 @@ try {
             let id = this.dataset.id;
 
             let data = ({"id":id,"_token":token, "_method":"delete"});
-
+            let url = `/admin/clientes/${id}`;
             fetch(url,{
                 method:'POST',
                 body:JSON.stringify(data),
@@ -165,7 +165,7 @@ try {
             }).then(res=>res.json());
             console.log(data);
 
-            //window.location.reload();
+            window.location.reload();
         });
     });
 } catch (error) {

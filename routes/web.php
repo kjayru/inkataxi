@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('conductores/detalles/{id}','Voyager\ConductorController@inicioEdit');
     Route::put('conductores/{id}','Voyager\ConductorController@inicioUpdate');
     Route::delete('conductores/{id}','Voyager\ConductorController@inicioDelete');
-
+    
     Route::get('busqueda','Voyager\BusquedaController@inicio')->name('voyager.busqueda.crear');
     Route::post('busqueda','Voyager\BusquedaController@salvar')->name('voyager.busqueda.salvar');
     Route::get('conductores/{word}','Voyager\BusquedaController@busqueda');
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('clientes','Voyager\ClienteController@inicioNew');
     Route::get('clientes/{id}/edit','Voyager\ClienteController@inicioEdit');
     Route::put('clientes/{id}','Voyager\ClienteController@inicioUpdate');
-    Route::delete('clientes/{id}','Voyager\ClienteController@inicioDelete');
+    Route::delete('clientes/{id}','Voyager\ClienteController@deleteuser');
 
     Route::get('clientes/viajes/{id}','Voyager\ClienteController@viajes');
     
@@ -86,7 +86,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('contacto','Voyager\ContactoController@mostrar');
     Route::post('contacto','Voyager\ContactoController@contactoNew');
-    Route::get('contacto/{id}/edit','Voyager\ContactoController@contactoEdit');
+    Route::get('contacto/{id}/edit','Voyager\ContactoController@getedit');
     Route::put('contacto/{id}','Voyager\ContactoController@contactoUpdate');
     Route::delete('contacto/{id}','Voyager\ContactoController@contactoDelete');
 
