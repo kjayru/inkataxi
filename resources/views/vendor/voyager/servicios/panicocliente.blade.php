@@ -12,7 +12,7 @@
                 <table class="table table-hover table-responsive" id="tb-panicocliente">
                     <thead>
                             <tr>
-                                <th></th>
+                                
                                 <th>Código de servicio</th>
                                 <th>Cliente</th>
                                 <th>Estado</th>
@@ -22,19 +22,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
-                        <tr>
-                            <th></th>
+                        @foreach($clientes as $key => $cliente)
+                       
+                            @if($cliente->user['name']!='')
+                            <tr>
+                               
+                                
+                                <td>{{ $cliente->alerttypes[0]->name }}</td>
+                                <td>{{ $cliente->user['name'] }}</td>
+                                <td>@if($cliente->estado==1) pendiente @else atendido @endif </td>
+                                <td>
+                                    
+                                    <a href="#" class="panico-map green" data-id=""><i class="fas fa-globe"></i></a>
+                                    @if($cliente->estado==1)  <a href="#" class="panico-atencion blue" data-id=""><i class="fas fa-check"></i></a> @endif  
+                                </td>
+                            </tr>
                             
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="#" class="client-servicio-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="client-delete" data-id=""><i class="far fa-trash-alt"></i></a> 
-                            </td>
-                        </tr>
-                        
+                            @endif
+                        @endforeach
                     </tbody>
                 </table>
             

@@ -12,7 +12,7 @@
                     <table class="table table-hover table-responsive" id="tb-marca">
                         <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>#</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
                                    
@@ -21,19 +21,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach($brands as $key => $brand)
                             <tr>
-                                <th></th>
+                                <th> {{ $key+1 }} </th>
                                 
                                 
-                                <td></td>
-                                <td></td>
+                                <td>{{ $brand->name }}</td>
+                                <td>@if($brand->state==1) no activo @else activo @endif</td>
                                 <td>
                                     <a href="#" class="client-servicio-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
                                     <a href="#" class="client-delete" data-id=""><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                     </table>
                 

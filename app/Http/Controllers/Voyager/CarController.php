@@ -16,26 +16,36 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\CarType;
+use App\Car;
+use App\Color;
+use App\Brand;
+use App\Modelo;
 
 class CarController extends VoyagerBaseController
 {
-   public function tipoAuto(){
+    public function tipoAuto(){
        $tipos = CarType::all();
        return view('vendor.voyager.auto.tipoauto',['tipos'=>$tipos]);
-   }
-
-   public function autoColor()
-   {
-        return view('vendor.voyager.auto.autocolor');
-
-   }
-
-   public function autoModelo()
-    {
-        return view('vendor.voyager.auto.automodelo');
     }
+
+    public function autoColor()
+    {
+        $colors = Color::all();
+        return view('vendor.voyager.auto.autocolor',['colors' => $colors]);
+
+    }
+
+    public function autoModelo()
+    {
+        $modelos = Modelo::all();
+        return view('vendor.voyager.auto.automodelo',['modelos'=> $modelos]);
+    }
+
+
     public function autoMarca()
     {
-        return view('vendor.voyager.auto.automarca');
+        $brands = Brand::all();
+
+        return view('vendor.voyager.auto.automarca',['brands'=>$brands]);
     }
 }

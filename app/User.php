@@ -37,5 +37,10 @@ class User extends \TCG\Voyager\Models\User
     public function qualifications(){
         return $this->hasMany('App\Qualification');
     }
+
+    public function alerts()
+    {
+        return $this->hasMany('App\Alert');
+    }
    
 }

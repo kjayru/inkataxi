@@ -16,6 +16,8 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\ServiceType;
+use App\Alert;
+use App\AlertType;
 
 class ServicioController extends VoyagerBaseController
 {
@@ -29,11 +31,21 @@ class ServicioController extends VoyagerBaseController
 
     public function servicioPanicoTaxi()
     {
-        return view('vendor.voyager.servicios.panicoTaxi');
+        $clientes = Alert::with(['user' => function($query)
+        {
+            $query->where('role_id', 2);       
+        },'alerttypes'])->get();
+
+        return view('vendor.voyager.servicios.panicoTaxi',['clientes'=>$clientes]);
     }
 
     public function servicioPanicoCliente()
     {
-        return view('vendor.voyager.servicios.panicocliente');
+        $clientes = Alert::with(['user' => function($query)
+        {
+            $query->where('role_id', 1);       
+        },'alerttypes'])->get();
+
+        return view('vendor.voyager.servicios.panicocliente',['clientes'=>$clientes]);
     }
 }
