@@ -8,6 +8,7 @@ function include(url) {
 var token = '';
 $(function() {
     'use strict'
+    $("#selnotifica").selectpicker();
     const meta = document.getElementsByTagName("meta");
 
     for(var i=0;i<meta.length;i++){
@@ -81,7 +82,7 @@ try {
         //Create the line chart
     salesChart4.Line(salesChartData4, salesChartOptions4)
 
-
+   
 } catch (error) {
     console.log("inicialice..");
 }
@@ -123,7 +124,7 @@ try {
         let token = document.querySelector("input[name$='_token']").value;
     
         var data = {'id': id ,'estado':estado,'_method':method,'_token':token};
-        console.log(`valor id ${method}`);
+      
         fetch(url,{
             method:'POST',
             body:JSON.stringify(data),
@@ -172,7 +173,121 @@ try {
     console.log(error);
 }
 
-//send post data
+let newservice = document.querySelector(".btn-add-servicio-new");
+if(newservice){
+    newservice.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-servicio").modal('show');
+    });
+};
+let saveservice = document.querySelector(".btn-save-service");
+if(saveservice){
+    saveservice.addEventListener('click',function(e){
+        token = document.getElementsByName('_token')[0].value;
+        nombre = document.getElementById('nombre').value;
+        comision = document.getElementById('comision').value;
+        estado = document.getElementById('estado').value;
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','nombre':nombre,'comision':comision,'estado':estado});
+            url= '/admin/tipos-servicio';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','nombre':nombre,'comision':comision,'estado':estado});
+            url= `/admin/tipos-servicio/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-servicio").modal('hide');
+                window.location.reload();
+            }
+        });
+
+    });
+};
+
+
+let eservicio = document.querySelectorAll(".client-servicio-edit");
+    Array.from(eservicio).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/tipos-servicio/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    console.log(response);
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Servicio';
+                    document.getElementById('metodo').value = 'PUT';
+                    document.getElementById('nombre').value = response.name;
+                    document.getElementById('comision').value = response.comision;
+                    if(response.status==2){
+                        document.getElementById('estado').checked = true;
+                    }
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-servicio").modal('show');
+                });
+
+        });
+    });
+
+let delservice = document.querySelectorAll('.servicio-delete');
+
+    Array.from(delservice).forEach(link =>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+            var id = this.dataset.id;
+            var token = document.getElementsByName('_token')[0].value;
+            let dataform = ({'id':id,'_method':'DELETE','_token':token});
+            let url = `/admin/tipos-servicio/${id}`;
+
+            fetch(url,{
+                method:'POST',
+                body:JSON.stringify(dataform),
+                headers:{
+                    'Content-Type':'Application/json'
+                }
+            })
+            .then(res=>res.json())
+            .catch(error=>console.error('error',error))
+            .then(response=>{
+                if(response.rpta==='ok'){
+                    window.location.reload;
+                }
+            });
+
+        });
+    });
+
+
+let car = document.querySelector('.btn-add-auto-new');
+if(car){
+    car.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-auto").modal('show');
+    });
+};
+
 
 
 $(function () {

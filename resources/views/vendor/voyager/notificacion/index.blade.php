@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="panel-block">
                 <div class="group">
                     <label>Mensaje de notificación</label>
                     <textarea name="mensaje" class="form-control" placeholder="Mensaje de notificación"></textarea>
@@ -16,13 +16,12 @@
                     enviar a:
                 </div>
                 <div class="group">
-                <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                        <option data-subtext="Rep California">Tom Foolery</option>
-                        <option data-subtext="Sen California">Bill Gordon</option>
-                        <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-                        <option data-subtext="Rep Alabama">Mario Flores</option>
-                        <option data-subtext="Rep Alaska">Don Young</option>
-                        <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+                <select class="selectpicker" id="selnotifica" multiple>
+                <option value="create">Seleccione</option>
+  
+                        @foreach($users as $user)
+                            <option  >{{ $user->name }} {{ $user->lastname }}</option>
+                        @endforeach
                       </select>
                 </div>
             </div>

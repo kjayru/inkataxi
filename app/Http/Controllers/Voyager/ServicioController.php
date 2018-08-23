@@ -48,4 +48,44 @@ class ServicioController extends VoyagerBaseController
 
         return view('vendor.voyager.servicios.panicocliente',['clientes'=>$clientes]);
     }
+
+    public function tipoServicioNew(Request $request){
+        $servicio = new ServiceType;
+
+        $servicio->name = $request->nombre;
+        $servicio->comision = $request->comision;
+        $servicio->status = $request->estado;
+
+        $servicio->save();
+
+        return response()->json(['rpta'=>'ok']);
+
+    }
+
+    public function tipoServicioEdit($id){
+        $servicio = ServiceType::find($id);
+
+        return response()->json($servicio);
+    }
+
+    public function tipoServicioUpdate(Request $request, $id){
+        $servicio = ServiceType::find($id);
+
+        $servicio->name = $request->nombre;
+        $servicio->comision = $request->comision;
+        $servicio->status = $request->estado;
+
+        $servicio->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function tipoServicioDelete($id){
+        $servicio = ServiceType::find($id);
+
+        $servicio->delete();
+
+        return response()->json(['rpta' => 'ok']);
+
+    }
 }

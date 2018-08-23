@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             
-               <div class="panel">
+               <div class="panel-block">
                      <h2>Validación Reniec</h2>
                      <div>
 
@@ -22,7 +22,7 @@
                             <input type="dni" class="form-control" id="dni"  placeholder="DNI">
                             
                         </div>
-                        
+                        {!! Recaptcha::render() !!}
                         <button type="submit" id="validar" class="btn btn-primary">Validar</button>
                     </form>
                </div>

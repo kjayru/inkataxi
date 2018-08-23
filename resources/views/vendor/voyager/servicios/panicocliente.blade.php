@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <section class="content-header">
-    <h1>Servicio pánico</h1>
+    <h1>Servicio pánico cliente</h1>
 </section>
 <div class="container">
     <div class="row">
