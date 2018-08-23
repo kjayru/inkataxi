@@ -26,5 +26,38 @@ class PagoController extends VoyagerBaseController
     }
 
 
+    public function tipoPagoNew(Request $request){
+        $pago = new PayType;
+
+        $pago->nombre = $request->nombre;
+
+        $pago->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function tipoPagoEdit($id){
+        $pago = PayType::find($id);
+
+        return response()->json($pago);
+    }
+
+    public function tipoPagoUpdate(Request $request, $id){
+        $pago = PayType::find($id);
+        $pago->nombre =  $request->nombre;
+
+        $pago->save();
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function tipoPagoDelete($id){
+        $pago = PayType::find($id);
+
+        $pago->delete();
+        return response()->json(['rpta'=>'ok']);
+
+    }
+
+
 
 }

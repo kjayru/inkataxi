@@ -289,6 +289,120 @@ if(car){
 };
 
 
+let carsave = document.querySelector('.btn-save-auto');
+if(carsave){
+    carsave.addEventListener('click',function(e){
+        e.preventDefault();
+
+        token = document.getElementsByName('_token')[0].value;
+        nombre = document.getElementById('nombre').value;
+        comision = document.getElementById('comision').value;
+        estado = document.getElementById('estado').value;
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','nombre':nombre,'comision':comision,'estado':estado});
+            url= '/admin/tipo-auto';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','nombre':nombre,'comision':comision,'estado':estado});
+            url= `/admin/tipo-auto/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-auto").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+
+
+let ecar = document.querySelectorAll(".client-car-edit");
+    Array.from(ecar).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/tipo-auto/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    console.log(response);
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Servicio';
+                    document.getElementById('metodo').value = 'PUT';
+                    document.getElementById('nombre').value = response.name;
+                    document.getElementById('comision').value = response.comision;
+                    if(response.status==2){
+                        document.getElementById('estado').checked = true;
+                    }
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-auto").modal('show');
+                });
+
+        });
+    });
+
+let cardelete = document.querySelectorAll('.client-car-delete');
+if(cardelete){
+    Array.from(cardelete).forEach(link =>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+            var id = this.dataset.id;
+            var token = document.getElementsByName('_token')[0].value;
+            let dataform = ({'id':id,'_method':'DELETE','_token':token});
+            let url = `/admin/tipo-auto/${id}`;
+
+            fetch(url,{
+                method:'POST',
+                body:JSON.stringify(dataform),
+                headers:{
+                    'Content-Type':'Application/json'
+                }
+            })
+            .then(res=>res.json())
+            .catch(error=>console.error('error',error))
+            .then(response=>{
+                if(response.rpta==='ok'){
+                    window.location.reload;
+                }
+            });
+
+        });
+    });
+}
+
+
+let btnpago = document.getElementById('btn-pagos');
+
+if(btnpago){
+    btnpago.addEventListener('click',function(e){
+        e.preventDefault();
+        console.log("evento btn");
+        $("#nuevo-pago").modal('show');
+    });
+}
+
+
+
 
 $(function () {
    
