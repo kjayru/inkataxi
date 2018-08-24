@@ -712,7 +712,131 @@ Array.from(atencion).forEach(link=>{
     });
 });
 
-//alertaconductor
+//color
+
+btncolor = document.querySelector('.btn-add-color');
+
+if(btncolor){
+    btncolor.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-color").modal('show');
+    });
+}
+
+//color-update
+
+
+let colorsave = document.querySelector('.btn-save-color');
+if(colorsave){
+    colorsave.addEventListener('click',function(e){
+        e.preventDefault();
+
+        token = document.getElementsByName('_token')[0].value;
+        nombre = document.getElementById('nombre').value;
+        estado = document.getElementById('estado').value;
+       
+        
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','nombre':nombre,'estado':estado});
+            url= '/admin/color';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','nombre':nombre,'estado':estado});
+            url= `/admin/color/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-color").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+
+
+
+
+
+let ecolor = document.querySelectorAll(".client-color-edit");
+    Array.from(ecolor).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/color/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Color';
+                    document.getElementById('metodo').value = 'PUT';
+                   
+                    
+                    document.getElementById('nombre').value = response.nombre;
+                    
+                    if(response.estado==2){
+                    document.getElementById('estado').checked = true;
+                    }
+                    
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-color").modal('show');
+                });
+
+        });
+    });
+
+    let colordelete = document.querySelectorAll('.client-color-delete');
+    if(colordelete){
+        Array.from(colordelete).forEach(link =>{
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                var id = this.dataset.id;
+                var token = document.getElementsByName('_token')[0].value;
+                let dataform = ({'id':id,'_method':'DELETE','_token':token});
+                let url = `/admin/color/${id}`;
+    
+                fetch(url,{
+                    method:'POST',
+                    body:JSON.stringify(dataform),
+                    headers:{
+                        'Content-Type':'Application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .catch(error=>console.error('error',error))
+                .then(response=>{
+                    
+                    if(response.rpta==='ok'){
+                        window.location.reload();
+                    }
+                });
+    
+            });
+        });
+    }
+
+
 
 $(function () {
    
@@ -728,4 +852,4 @@ $(function () {
     $("#tb-color").DataTable();
     $("#tb-marca").DataTable();
     $("#tb-modelo").DataTable();
-  })
+  });

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Voyager;
 
-
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
@@ -87,4 +86,102 @@ class CarController extends VoyagerBaseController
 
         return response()->json(['rpta'=>'ok']);
     }
+
+    public function autoColorNew(Request $request){
+
+        $color = new Color;
+
+        $color->nombre = $request->nombre;
+        $color->estado = $request->estado;
+
+        $color->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function autoColorEdit($id){
+
+        $color = Color::find($id);
+       
+
+        return response()->json($color);
+        
+    }
+
+    public function autoColorUpdate(Request $request, $id){
+        $color = Color::find($id);
+        $color->nombre = $request->nombre;
+        $color->estado = $request->estado;
+
+        $color->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function autoColorDelete($id){
+        $color = Color::find($id);
+        $color->delete();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    /*marca*/
+
+    public function autoMarcaNew(Request $request){
+
+        $marca = new Brand;                          
+        return response()->json(['rpta'=>'ok']);
+    }      
+
+    public function autoMarcaEdit($id){
+        $marca = Brand::find($id);
+
+
+        return response()->json($marca);
+    }     
+    
+    public function autoMarcaUpdate(Request $request){
+        $marca = Brand::find($id);
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function autoMarcaDelete($id){
+        $marca = Brand::find($id);
+
+        $marca->delete();
+        return response()->json(['rpta'=>'ok']);        
+    }
+
+    //modelo
+
+
+    public function autoModeloNew(Request $request){
+
+        $marca = new Modelo;                          
+        return response()->json(['rpta'=>'ok']);
+    }      
+
+    public function autoModeloEdit($id){
+        $marca = Modelo::find($id);
+
+
+        return response()->json($marca);
+    }     
+    
+    public function autoModeloUpdate(Request $request){
+        $marca = Modelo::find($id);
+
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function autoModeloDelete($id){
+        $marca = Modelo::find($id);
+
+        $marca->delete();
+        return response()->json(['rpta'=>'ok']);        
+    }
+
+   
 }

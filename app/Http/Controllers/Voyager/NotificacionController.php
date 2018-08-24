@@ -19,8 +19,39 @@ use App\User;
 
 class NotificacionController extends VoyagerBaseController
 {
-   public function mostrar(){
+   public function mostrar(){                                                                                                                                                                                                                                                                                                                                                  
        $users = User::all();
        return view('vendor.voyager.notificacion.index',['users' => $users]);
    }
+
+
+   public function mostrarNew(Request $request){
+
+    $marca = new Modelo;                          
+    return response()->json(['rpta'=>'ok']);
+    }      
+
+    public function mostrarEdit($id){
+        $marca = Modelo::find($id);
+
+
+        return response()->json($marca);
+    }     
+
+    public function mostrarUpdate(Request $request){
+        $marca = Modelo::find($id);
+
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function mostrarDelete($id){
+        $marca = Modelo::find($id);
+
+        $marca->delete();
+        return response()->json(['rpta'=>'ok']);        
+    }
+
+
+
 }
