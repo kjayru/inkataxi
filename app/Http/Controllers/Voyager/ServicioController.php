@@ -88,4 +88,28 @@ class ServicioController extends VoyagerBaseController
         return response()->json(['rpta' => 'ok']);
 
     }
+
+    //panico
+
+    public function servicioPanicoClienteEdit($id){
+        $alerta = Alert::find($id);
+
+        $nombre = $alerta->user->name;
+        $telefono = $alerta->user->phone;
+        $latitud = $alerta->latitud;
+        $longitud = $alerta->longitud;
+
+        $datos = ['nombre'=>$nombre, 'telefono'=>$telefono, 'latitud'=>$latitud,'longitud'=>$longitud];
+        return response()->json($datos);
+    }
+
+    public function servicioPanicoClienteUpdate(Request $request,$id){
+        $alerta = Alert::find($id);
+
+        $alerta->estado = $request->estado;
+        
+        $alerta->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
 }

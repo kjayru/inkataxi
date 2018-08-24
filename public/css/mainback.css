@@ -97,3 +97,10 @@ div#map {
     background: white;
     padding: 30px 10px 30px 10px;
 }
+
+.group.atodos{
+    display:block;
+}
+div#mapalerta {
+    height: 500px;
+}

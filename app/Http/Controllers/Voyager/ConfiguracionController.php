@@ -24,4 +24,36 @@ class ConfiguracionController extends VoyagerBaseController
         $configuracion = Configuration::first();
         return view('vendor.voyager.configuracion.index',['configura'=>$configuracion]);
     }
+
+    public function configurarUpdate(Request $request, $id){
+        $configura =  Configuration::find($id);
+
+        $configura->numintentos = $request->numintentos;
+        $configura->limitekm = $request->limitekm;
+        $configura->tiempoespera = $request->tiempoespera;
+        $configura->tiempocortesia = $request->tiempocortesia;
+
+        $configura->horapuntainicial = $request->horapuntainicial;
+        $configura->horapuntafinal = $request->horapuntafinal;
+        $configura->horapuntatardeinicio = $request->horapuntatardeinicio;
+        $configura->horapuntatardefinal = $request->horapuntatardefinal;
+
+        $configura->costominuto = $request->costominuto;
+        $configura->costokm = $request->costokm;
+        $configura->costoaeropuerto = $request->costoaeropuerto;
+        $configura->correofactura = $request->correofactura;
+
+        $configura->correocontacto = $request->correocontacto;
+        $configura->correocomunidad = $request->correocomunidad;
+        $configura->conductores = $request->conductores;
+        $configura->correoconductor = $request->correoconductor;
+
+        $configura->busquedakm = $request->busquedakm;
+        $configura->todos = $request->todos;
+        
+        $configura->save();
+
+        return redirect('/admin/configuraciones');
+
+    }
 }

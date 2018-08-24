@@ -16,10 +16,61 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Promotion;
+use App\PromotionType;
 class PromocionController extends VoyagerBaseController
 {
     public function mostrar(){
         $promos = Promotion::all();
-        return view('vendor.voyager.promocion.index',['promos'=>$promos]);
+        $tipos = PromotionType::all();
+        return view('vendor.voyager.promocion.index',['promos'=>$promos,'tipos'=>$tipos]);
+    }
+
+    public function mostrarNew(Request $request){
+        
+        $promo = new Promotion;
+
+        $promo->code = $request->code;
+        $promo->desde= $request->desde;
+        $promo->hasta = $request->hasta;
+        $promo->montodescuento = $request->montodescuento;
+        $promo->limite= $request->limite;
+        $promo->promotion_type_id = $request->promotipo;
+
+        $promo->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function mostrarNEdit($id){
+        $promo = Promotion::find($id);
+
+        return response()->json($promo);
+    }
+
+    public function mostrarUpdate(Request $request, $id){
+        $promo = Promotion::find($id);
+
+        $promo->code = $request->code;
+        $promo->desde= $request->desde;
+        $promo->hasta = $request->hasta;
+        $promo->montodescuento = $request->montodescuento;
+        $promo->limite= $request->limite;
+        $promo->promotion_type_id = $request->promotipo;
+
+        $promo->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function mostrarDelete($id){
+        $promo = Promotion::find($id);
+        $promo->delete();
+
+        return response()->json(['rpta'=>'ok']);
     }
 }
+/*configurarNew
+configurarEdit
+configurarUpdate
+configurarDelete*/
+

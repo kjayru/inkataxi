@@ -33,8 +33,8 @@
                                 <td>@if($cliente->estado==1) pendiente @else atendido @endif </td>
                                 <td>
                                     
-                                    <a href="#" class="panico-map green" data-id=""><i class="fas fa-globe"></i></a>
-                                    @if($cliente->estado==1)  <a href="#" class="panico-atencion blue" data-id=""><i class="fas fa-check"></i></a> @endif  
+                                    <a href="#" class="panico-map green" data-id="{{ $cliente->id }}"><i class="fas fa-globe"></i></a>
+                                    @if($cliente->estado==1)  <a href="#" class="panico-atencion blue" data-id="{{ $cliente->id }}"><i class="fas fa-check"></i></a> @endif  
                                 </td>
                             </tr>
                             
@@ -47,4 +47,37 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" tabindex="-1" id="cliente-panico" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Detalle de alerta</h4>
+            </div>
+            <div class="modal-body">
+                    <ul class="datos">
+
+                    </ul>
+                    <div id="mapalerta"></div>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-primary btn-save-promocion">Guardar</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <form class="form-horizontal" method="POST" id="fr-new-promo">
+            @csrf
+           <input type="hidden" name="method" id="metodo" value="PUT">
+    </form>
+
+    
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_MAP') }}">
+          </script>
 @stop

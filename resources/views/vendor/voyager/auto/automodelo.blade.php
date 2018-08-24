@@ -6,6 +6,15 @@
 <section class="content-header">
         <h1>Modelos</h1>
     </section>
+    <div class="container-fluid">
+            <h1 class="page-title">
+                <i class="voyager-categories"></i> Modelo
+            </h1>
+                <a href="#" class="btn btn-success btn-add-modelo">
+                    <i class="voyager-plus"></i> <span>Añadir nuevo</span>
+                </a>
+                
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">

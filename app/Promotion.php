@@ -8,6 +8,7 @@ class Promotion extends Model
 {
     public function promotiontypes()
     {
-        return $this->hasMany('App\PromotionType','id');
+        return $this->hasMany('App\PromotionType','id','promotion_type_id');
+    
     }
 }

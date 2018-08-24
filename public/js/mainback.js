@@ -346,7 +346,7 @@ let ecar = document.querySelectorAll(".client-car-edit");
                 .then(response=>{
                     console.log(response);
                     //injection
-                    document.querySelector('.modal-title').innerHTML = 'Editar Servicio';
+                    document.querySelector('.modal-title').innerHTML = 'Editar Auto';
                     document.getElementById('metodo').value = 'PUT';
                     document.getElementById('nombre').value = response.name;
                     document.getElementById('comision').value = response.comision;
@@ -382,7 +382,7 @@ if(cardelete){
             .catch(error=>console.error('error',error))
             .then(response=>{
                 if(response.rpta==='ok'){
-                    window.location.reload;
+                    window.location.reload();
                 }
             });
 
@@ -390,19 +390,329 @@ if(cardelete){
     });
 }
 
-
+//eventos pago
 let btnpago = document.getElementById('btn-pagos');
 
 if(btnpago){
     btnpago.addEventListener('click',function(e){
         e.preventDefault();
-        console.log("evento btn");
+       
         $("#nuevo-pago").modal('show');
     });
 }
 
 
+let pagosave = document.querySelector('.btn-pago-auto');
+if(pagosave){
+    pagosave.addEventListener('click',function(e){
+        e.preventDefault();
 
+        token = document.getElementsByName('_token')[0].value;
+        nombre = document.getElementById('nombre').value;
+        
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','nombre':nombre});
+            url= '/admin/tipos-de-pago';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','nombre':nombre});
+            url= `/admin/tipos-de-pago/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-pago").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+
+
+
+
+let epago = document.querySelectorAll(".client-pago-edit");
+    Array.from(epago).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/tipos-de-pago/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Pago';
+                    document.getElementById('metodo').value = 'PUT';
+                    document.getElementById('nombre').value = response.nombre;
+                    
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-pago").modal('show');
+                });
+
+        });
+    });
+
+    let pagodelete = document.querySelectorAll('.client-pago-delete');
+    if(pagodelete){
+        Array.from(pagodelete).forEach(link =>{
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                var id = this.dataset.id;
+                var token = document.getElementsByName('_token')[0].value;
+                let dataform = ({'id':id,'_method':'DELETE','_token':token});
+                let url = `/admin/tipos-de-pago/${id}`;
+    
+                fetch(url,{
+                    method:'POST',
+                    body:JSON.stringify(dataform),
+                    headers:{
+                        'Content-Type':'Application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .catch(error=>console.error('error',error))
+                .then(response=>{
+                    
+                    if(response.rpta==='ok'){
+                        window.location.reload();
+                    }
+                });
+    
+            });
+        });
+    }
+
+//Configuraciones
+let cktodo = document.getElementById("todos");
+
+if(cktodo){
+    cktodo.addEventListener( 'change', function() {
+        if(this.checked) {
+            $(".atodos").hide();
+        } else {
+            $(".atodos").show();
+        }
+    });
+}
+
+//promocionesd
+let btnpromo = document.querySelector('.btn-add-promocion');
+
+if(btnpromo){
+    btnpromo.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-promocion").modal('show');
+    });
+}
+
+
+
+let promosave = document.querySelector('.btn-save-promocion');
+if(promosave){
+    promosave.addEventListener('click',function(e){
+        e.preventDefault();
+
+        token = document.getElementsByName('_token')[0].value;
+        code = document.getElementById('code').value;
+        desde = document.getElementById('desde').value;
+        hasta = document.getElementById('hasta').value;
+        montodescuento = document.getElementById('montodescuento').value;
+        limite = document.getElementById('limite').value;
+        promotipo = document.getElementById('promotipo').value;
+        
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+        if(metodo==='POST'){
+
+        var formData = ({'_token':token,'_method':'POST','code':code,'desde':desde,'hasta':hasta,'montodescuento':montodescuento,'limite':limite,'promotipo':promotipo});
+            url= '/admin/promociones';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','code':code,'desde':desde,'hasta':hasta,'montodescuento':montodescuento,'limite':limite,'promotipo':promotipo});
+            url= `/admin/promociones/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-promocion").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+
+
+let epromo = document.querySelectorAll(".client-promo-edit");
+    Array.from(epromo).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/promociones/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Promoción';
+                    document.getElementById('metodo').value = 'PUT';
+                   
+                    
+                    document.getElementById('code').value = response.code;
+                    document.getElementById('desde').value = response.desde;
+                    document.getElementById('hasta').value = response.hasta;
+                    document.getElementById('montodescuento').value = response.montodescuento;
+                    document.getElementById('limite').value = response.limite;
+                    document.getElementById('promotipo').value = response.promotion_type_id;
+                    
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-promocion").modal('show');
+                });
+
+        });
+    });
+
+    let promodelete = document.querySelectorAll('.client-delete-promo');
+    if(promodelete){
+        Array.from(promodelete).forEach(link =>{
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                var id = this.dataset.id;
+                var token = document.getElementsByName('_token')[0].value;
+                let dataform = ({'id':id,'_method':'DELETE','_token':token});
+                let url = `/admin/promociones/${id}`;
+    
+                fetch(url,{
+                    method:'POST',
+                    body:JSON.stringify(dataform),
+                    headers:{
+                        'Content-Type':'Application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .catch(error=>console.error('error',error))
+                .then(response=>{
+                    
+                    if(response.rpta==='ok'){
+                        window.location.reload();
+                    }
+                });
+    
+            });
+        });
+    }
+//panico-map
+
+let epanico = document.querySelectorAll(".panico-map");
+    Array.from(epanico).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/servicio-panico/clientes/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection a mapa
+                    console.log(response);
+                    $("#cliente-panico").modal('show');
+                    var myLatLng = {lat: parseFloat(response.latitud), lng: parseFloat(response.longitud)};
+      
+                    var map = new google.maps.Map(document.getElementById('mapalerta'), {
+                      zoom: 12,
+                      center: myLatLng
+                    });
+            
+                    var marker = new google.maps.Marker({
+                      position: myLatLng,
+                      map: map,
+                      title: 'Ubicación'
+                    });
+                    let datos = '';
+                    let estado ='';
+                    if(response.estado==1){
+                        estado = 'pendiente';
+                    }else{
+                        estado = 'atendido';
+                    }
+                    
+                    datos = datos+`<li>Cliente: ${response.nombre}</li>`;
+                    datos = datos+`<li>Nombre Referencia: No existe</li>`;
+                    datos = datos+`<li>Telefono referencia: ${response.telefono}</li>`;
+                    datos = datos+`<li>estado: ${estado}</li>`;
+                   
+                    $('.datos').html(datos);
+                    
+                });
+
+        });
+    });
+
+let atencion = document.querySelectorAll('.panico-atencion');
+Array.from(atencion).forEach(link=>{
+    link.addEventListener('click',function(e){
+        e.preventDefault();
+        let id = this.dataset.id;
+        var token = document.getElementsByName('_token')[0].value;
+        let url = `/admin/servicio-panico/clientes/${id}`;
+
+        var formData = ({'_token':token,'_method':'PUT','estado':2});
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-promocion").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+});
+
+//alertaconductor
 
 $(function () {
    

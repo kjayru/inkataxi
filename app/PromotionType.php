@@ -8,6 +8,6 @@ class PromotionType extends Model
 {
     public function promotion()
     {
-        return $this->belongsTo('App\Promotion','promotion_type_id');
+        return $this->belongsTo('App\Promotion','id');
     }
 }

@@ -203,7 +203,7 @@ return [
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        '/css/mainback.css',
+        '/css/mainback.css?v='.date('dmYs'),
         '//adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css',
         '/plugins/morris/morris.css',
         '//use.fontawesome.com/releases/v5.1.1/css/all.css',
