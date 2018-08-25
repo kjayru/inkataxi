@@ -139,3 +139,8 @@ a.alertas>span {
     top: -6px;
     left: -10px;
 }
+.small-box:hover {
+    text-decoration: none;
+    color: black !important;
+    box-shadow: 2px 0 2px 2px gainsboro !important;
+}
