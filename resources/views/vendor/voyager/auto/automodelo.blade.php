@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
         <h1>Modelos</h1>
-    </section>
+</section>
     <div class="container-fluid">
         <h1 class="page-title">
             <i class="voyager-categories"></i> Modelo
@@ -15,15 +15,7 @@
             </a>
             
     </div>
-    <div class="container-fluid">
-            <h1 class="page-title">
-                <i class="voyager-categories"></i> Modelo
-            </h1>
-                <a href="#" class="btn btn-success btn-add-modelo">
-                    <i class="voyager-plus"></i> <span>Añadir nuevo</span>
-                </a>
-                
-    </div>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -31,8 +23,10 @@
                         <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Modelo</th>
                                     <th>Marca</th>
+                                    <th>Código</th>
+                                    <th>Modelo</th>
+                                   
                                     <th>Estado</th>
                                    
                                     <th>Acciones</th>
@@ -43,12 +37,14 @@
                             @foreach($modelos as $key => $modelo)
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <td>{{ $modelo->name }}</td>
                                 <td>{{ $modelo->brand->name }}</td>
+                                <td>{{ $modelo->code }}</td>
+                                <td>{{ $modelo->name }}</td>
+                                
                                 <td>@if($modelo->state==1) no activo @else activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-modelo-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-delete-modelo" data-id=""><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-modelo-edit" data-id="{{ $modelo->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-delete-modelo" data-id="{{ $modelo->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach
@@ -73,6 +69,30 @@
                     @csrf
                    <input type="hidden" name="method" id="metodo" value="POST">
                    <input type="hidden" name="id" id="userid" value="">
+
+                   <div class="form-group">
+                    <label class="col-md-4 control-label" for="codigo">Marca</label>  
+                    <div class="col-md-6">
+                    <select id="brand_id" name="brand_id"  class="form-control input-md">
+                        <option >Selecciona</option>
+                        @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}">{{ $brand->code }}</option>
+                        @endforeach
+                    </select>
+                      
+                    </div>
+                  </div>
+
+
+                   <div class="form-group">
+                    <label class="col-md-4 control-label" for="codigo">Código</label>  
+                    <div class="col-md-6">
+                    <input id="codigo" name="codigo" type="text" placeholder="Código" class="form-control input-md">
+                      
+                    </div>
+                  </div>
+
+
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="nombre">Nombre</label>  
                       <div class="col-md-6">
@@ -87,7 +107,7 @@
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-4">
                             <label class="checkbox-inline" for="estado">
-                            <input type="checkbox" name="estado" id="estado" value="2">
+                            <input type="checkbox" name="state" id="state" value="2">
                             Estado
                             </label>
     

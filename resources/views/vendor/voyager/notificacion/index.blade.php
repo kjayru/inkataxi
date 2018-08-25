@@ -4,10 +4,14 @@
 @stop
 @section('content')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+<section class="content-header">
+        <h1>Notificaciones</h1>
+</section>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel-block">
+                <form action="admin/notificaciones" method="POST">
                 <div class="group">
                     <label>Mensaje de notificación</label>
                     <textarea name="mensaje" class="form-control" placeholder="Mensaje de notificación"></textarea>
@@ -24,6 +28,9 @@
                         @endforeach
                       </select>
                 </div>
+                <button type="button" class="btn btn-primary btn-save-modelo">Enviar</button>
+                </form>
+
             </div>
 
             

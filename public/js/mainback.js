@@ -742,14 +742,14 @@ if(colorsave){
 
         if(metodo==='POST'){
 
-            var formData = ({'_token':token,'_method':'POST','nombre':nombre,'estado':estado});
+            var formData = ({'_token':token,'_method':'POST','name':nombre,'state':estado});
             url= '/admin/color';
             
         }else{
             
             id = document.getElementById('userid').value;
 
-            var formData = ({'_token':token,'_method':'PUT','nombre':nombre,'estado':estado});
+            var formData = ({'_token':token,'_method':'PUT','name':nombre,'state':estado});
             url= `/admin/color/${id}`;
             
         }
@@ -773,7 +773,7 @@ if(colorsave){
 
 
 
-
+//color edit
 
 let ecolor = document.querySelectorAll(".client-color-edit");
     Array.from(ecolor).forEach(link=>{
@@ -792,9 +792,9 @@ let ecolor = document.querySelectorAll(".client-color-edit");
                     document.getElementById('metodo').value = 'PUT';
                    
                     
-                    document.getElementById('nombre').value = response.nombre;
+                    document.getElementById('nombre').value = response.name;
                     
-                    if(response.estado==2){
+                    if(response.state==2){
                     document.getElementById('estado').checked = true;
                     }
                     
@@ -806,6 +806,7 @@ let ecolor = document.querySelectorAll(".client-color-edit");
         });
     });
 
+    //color-delete
     let colordelete = document.querySelectorAll('.client-color-delete');
     if(colordelete){
         Array.from(colordelete).forEach(link =>{
@@ -835,8 +836,246 @@ let ecolor = document.querySelectorAll(".client-color-edit");
             });
         });
     }
+//marca
+let btnmarca = document.querySelector(".btn-add-marca");
+if(btnmarca){
+    btnmarca.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-marca").modal('show');
+    });
+}
+//marca-nuevo
+let marcasave = document.querySelector('.btn-save-marca');
+if(marcasave){
+    marcasave.addEventListener('click',function(e){
+        e.preventDefault();
+
+        token = document.getElementsByName('_token')[0].value;
+        code = document.getElementById('codigo').value;
+        name = document.getElementById('nombre').value;
+        state = document.getElementById('state').value;
+       
+        
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','code':code,'name':name,'state':state});
+            url= '/admin/marca';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','code':code,'name':name,'state':state});
+            url= `/admin/marca/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-marca").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+//marca-edit
+
+let emarca = document.querySelectorAll(".client-marca-edit");
+    Array.from(emarca).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/marca/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Marca';
+                    document.getElementById('metodo').value = 'PUT';
+                   
+                    document.getElementById('codigo').value = response.code;
+                    document.getElementById('nombre').value = response.name;
+                    
+                    if(response.state==2){
+                    document.getElementById('state').checked = true;
+                    }
+                    
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-marca").modal('show');
+                });
+
+        });
+    });
+//marca-delete
+    let marcadelete = document.querySelectorAll('.client-delete-marca');
+    if(marcadelete){
+        Array.from(marcadelete).forEach(link =>{
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                var id = this.dataset.id;
+
+                var token = document.getElementsByName('_token')[0].value;
+                let dataform = ({'id':id,'_method':'DELETE','_token':token});
+                let url = `/admin/marca/${id}`;
+    
+                fetch(url,{
+                    method:'POST',
+                    body:JSON.stringify(dataform),
+                    headers:{
+                        'Content-Type':'Application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .catch(error=>console.error('error',error))
+                .then(response=>{
+                    
+                    if(response.rpta==='ok'){
+                        window.location.reload();
+                    }
+                });
+    
+            });
+        });
+    }
 
 
+
+
+//modelo
+let btnmodelo = document.querySelector(".btn-add-modelo");
+if(btnmodelo){
+    btnmodelo.addEventListener('click',function(e){
+        e.preventDefault();
+        $("#nuevo-modelo").modal('show');
+    });
+}
+//modelo-nuevo
+let modelosave = document.querySelector('.btn-save-modelo');
+if(modelosave){
+    modelosave.addEventListener('click',function(e){
+        e.preventDefault();
+
+        token = document.getElementsByName('_token')[0].value;
+
+        brand_id = document.getElementById('brand_id').value;
+        code = document.getElementById('codigo').value;
+        name = document.getElementById('nombre').value;
+        state = document.getElementById('state').value;
+       
+        
+
+        let metodo = document.getElementById('metodo').value;
+        let url='';
+
+        if(metodo==='POST'){
+
+            var formData = ({'_token':token,'_method':'POST','brand_id':brand_id,'code':code,'name':name,'state':state});
+            url= '/admin/modelo';
+            
+        }else{
+            
+            id = document.getElementById('userid').value;
+
+            var formData = ({'_token':token,'_method':'PUT','brand_id':brand_id,'code':code,'name':name,'state':state});
+            url= `/admin/modelo/${id}`;
+            
+        }
+        fetch(url,{
+            method:'POST',
+            body:JSON.stringify(formData),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .catch(error => console.error('error: ', error))
+        .then(response =>{ 
+            if(response.rpta=='ok'){
+                $("#nuevo-marca").modal('hide');
+                window.location.reload();
+            }
+        });
+    });
+}
+//modelo-edit
+
+let emodelo = document.querySelectorAll(".client-modelo-edit");
+    Array.from(emodelo).forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+           let id =  this.dataset.id;
+           
+           let url = `/admin/modelo/${id}/edit`;
+           fetch(url)
+                .then(res=>res.json())
+                .catch(error=> console.error('error',error))
+                .then(response=>{
+                    
+                    //injection
+                    document.querySelector('.modal-title').innerHTML = 'Editar Modelo';
+                    document.getElementById('metodo').value = 'PUT';
+                    document.getElementById('brand_id').value = response.brand_id;
+                    document.getElementById('codigo').value = response.code;
+                    document.getElementById('nombre').value = response.name;
+                    
+                    if(response.state==2){
+                    document.getElementById('state').checked = true;
+                    }
+                    
+                    document.getElementById('userid').value = response.id;
+
+                    $("#nuevo-modelo").modal('show');
+                });
+
+        });
+    });
+//modelo-delete
+    let modelodelete = document.querySelectorAll('.client-delete-modelo');
+    if(modelodelete){
+        Array.from(modelodelete).forEach(link =>{
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                var id = this.dataset.id;
+
+                var token = document.getElementsByName('_token')[0].value;
+                let dataform = ({'id':id,'_method':'DELETE','_token':token});
+                let url = `/admin/modelo/${id}`;
+    
+                fetch(url,{
+                    method:'POST',
+                    body:JSON.stringify(dataform),
+                    headers:{
+                        'Content-Type':'Application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .catch(error=>console.error('error',error))
+                .then(response=>{
+                    
+                    if(response.rpta==='ok'){
+                        window.location.reload();
+                    }
+                });
+    
+            });
+        });
+    }
 
 $(function () {
    

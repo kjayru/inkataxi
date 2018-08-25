@@ -23,6 +23,7 @@
                         <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
                                    
@@ -35,12 +36,12 @@
                             <tr>
                                 <th> {{ $key+1 }} </th>
                                 
-                                
+                                <td>{{ $brand->code }}</td>
                                 <td>{{ $brand->name }}</td>
                                 <td>@if($brand->state==1) no activo @else activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-marca-edit" data-id=""><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-delete-marca" data-id=""><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-marca-edit" data-id="{{ $brand->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-delete-marca" data-id="{{ $brand->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach
@@ -67,21 +68,30 @@
                     @csrf
                    <input type="hidden" name="method" id="metodo" value="POST">
                    <input type="hidden" name="id" id="userid" value="">
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="nombre">Nombre</label>  
+                    
+                   <div class="form-group">
+                      <label class="col-md-4 control-label" for="nombre">Código</label>  
                       <div class="col-md-6">
-                      <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md">
+                      <input id="codigo" name="codigo" type="text" placeholder="Código" class="form-control input-md">
                         
                       </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="nombre">Nombre</label>  
+                        <div class="col-md-6">
+                        <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md">
+                          
+                        </div>
+                      </div>
                     
                     
                     
                     <!-- Text input-->
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-4">
-                            <label class="checkbox-inline" for="estado">
-                            <input type="checkbox" name="estado" id="estado" value="2">
+                            <label class="checkbox-inline" for="state">
+                            <input type="checkbox" name="state" id="state" value="2">
                             Estado
                             </label>
     

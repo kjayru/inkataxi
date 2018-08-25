@@ -33,7 +33,7 @@
                                 <th>{{ $key + 1 }}</th>
                                 
                                 
-                                <td>{{ $color->nombre }}</td>
+                                <td>{{ $color->name }}</td>
                                 <td>@if($color->state==1) no activo @else activo @endif</td>
                                 <td>
                                     <a href="#" class="client-color-edit" data-id="{{ $color->id }}"><i class="fas fa-pencil-alt"></i></a>

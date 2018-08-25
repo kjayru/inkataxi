@@ -23,27 +23,28 @@ use App\Modelo;
 class CarController extends VoyagerBaseController
 {
     public function tipoAuto(){
-       $tipos = CarType::all();
+       $tipos = CarType::orderBy("id",'desc')->get();
        return view('vendor.voyager.auto.tipoauto',['tipos'=>$tipos]);
     }
 
     public function autoColor()
     {
-        $colors = Color::all();
+        $colors = Color::orderBy("id",'desc')->get();
         return view('vendor.voyager.auto.autocolor',['colors' => $colors]);
 
     }
 
     public function autoModelo()
     {
-        $modelos = Modelo::all();
-        return view('vendor.voyager.auto.automodelo',['modelos'=> $modelos]);
+        $modelos = Modelo::orderBy("id",'desc')->get();
+        $brands = Brand::all();
+        return view('vendor.voyager.auto.automodelo',['modelos'=> $modelos,'brands'=>$brands]);
     }
 
 
     public function autoMarca()
     {
-        $brands = Brand::all();
+        $brands = Brand::orderBy("id",'desc')->get();
 
         return view('vendor.voyager.auto.automarca',['brands'=>$brands]);
     }
@@ -91,8 +92,8 @@ class CarController extends VoyagerBaseController
 
         $color = new Color;
 
-        $color->nombre = $request->nombre;
-        $color->estado = $request->estado;
+        $color->name = $request->name;
+        $color->state = $request->state;
 
         $color->save();
 
@@ -110,8 +111,8 @@ class CarController extends VoyagerBaseController
 
     public function autoColorUpdate(Request $request, $id){
         $color = Color::find($id);
-        $color->nombre = $request->nombre;
-        $color->estado = $request->estado;
+        $color->name = $request->name;
+        $color->state = $request->state;
 
         $color->save();
 
@@ -129,7 +130,12 @@ class CarController extends VoyagerBaseController
 
     public function autoMarcaNew(Request $request){
 
-        $marca = new Brand;                          
+        $marca = new Brand;   
+        
+        $marca->code = $request->code;
+        $marca->name = $request->name;
+        $marca->state = $request->state;
+        $marca->save();
         return response()->json(['rpta'=>'ok']);
     }      
 
@@ -140,9 +146,13 @@ class CarController extends VoyagerBaseController
         return response()->json($marca);
     }     
     
-    public function autoMarcaUpdate(Request $request){
+    public function autoMarcaUpdate(Request $request, $id){
         $marca = Brand::find($id);
-
+        
+        $marca->code = $request->code;
+        $marca->name = $request->name;
+        $marca->state = $request->state;
+        $marca->save();
         return response()->json(['rpta'=>'ok']);
     }
 
@@ -157,29 +167,41 @@ class CarController extends VoyagerBaseController
 
 
     public function autoModeloNew(Request $request){
-
-        $marca = new Modelo;                          
+        
+        $modelo = new Modelo;  
+        $modelo->brand_id = $request->brand_id;
+        $modelo->code = $request->code;
+        $modelo->name = $request->name;
+        $modelo->state = $request->state;
+        
+        $modelo->save();
         return response()->json(['rpta'=>'ok']);
     }      
 
     public function autoModeloEdit($id){
-        $marca = Modelo::find($id);
+        $modelo = Modelo::find($id);
 
 
-        return response()->json($marca);
+        return response()->json($modelo);
     }     
     
-    public function autoModeloUpdate(Request $request){
-        $marca = Modelo::find($id);
+    public function autoModeloUpdate(Request $request, $id){
+        $modelo = Modelo::find($id);
 
+        $modelo->brand_id = $request->brand_id;
+        $modelo->code = $request->code;
+        $modelo->name = $request->name;
+        $modelo->state = $request->state;
 
+        $modelo->save();
         return response()->json(['rpta'=>'ok']);
     }
 
     public function autoModeloDelete($id){
-        $marca = Modelo::find($id);
+        $modelo = Modelo::find($id);
 
-        $marca->delete();
+        $modelo->delete();
+
         return response()->json(['rpta'=>'ok']);        
     }
 
