@@ -3,7 +3,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 @section('content')
-
+<section class="content-header">
+        <h1>Viaje realizado</h1>
+    </section>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
