@@ -46,7 +46,7 @@
   
                          <td>{{ $travel->paytype->nombre }}</td>
                          @php $costo = json_decode($travel->costo) @endphp
-                         <td>S/. {{ $costo->preciobase }} </td>
+                         <td>S/. {{ round($costo->preciobase,2) }} </td>
                          <td></td>
                           <td>
                           <form action="/admin/clientes/mapa" method="post">
