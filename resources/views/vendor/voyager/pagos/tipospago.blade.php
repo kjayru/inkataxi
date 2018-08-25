@@ -38,8 +38,8 @@
                                 <td>{{ $tipos->nombre }}</td>
                                 
                                 <td>
-                                    <a href="#" class="client-pago-edit" data-id="{{ $tipos->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-pago-delete" data-id="{{ $tipos->id }}"><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-pago-edit burbuja azul" data-id="{{ $tipos->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-pago-delete burbuja rojo" data-id="{{ $tipos->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

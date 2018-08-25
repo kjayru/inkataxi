@@ -40,8 +40,8 @@
                                 <td>S/ {{ $tipo->comision }}</td>
                                 <td>@if($tipo->habilitado==1) activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-car-edit" data-id="{{ $tipo->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-car-delete" data-id="{{ $tipo->id }}"><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-car-edit azul burbuja" data-id="{{ $tipo->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-car-delete rojo burbuja" data-id="{{ $tipo->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

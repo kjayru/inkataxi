@@ -43,8 +43,8 @@
                                 
                                 <td>@if($modelo->state==1) no activo @else activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-modelo-edit" data-id="{{ $modelo->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-delete-modelo" data-id="{{ $modelo->id }}"><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-modelo-edit burbuja azul" data-id="{{ $modelo->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-delete-modelo burbuja rojo" data-id="{{ $modelo->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

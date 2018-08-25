@@ -18,7 +18,16 @@ a.user-action ,a.user-detalle, .client-detalle,a.client-action, .client-delete,.
   border: 1px solid rgb(120, 198, 2);
   color:white;
 }
-
+.rojo{
+    background: #f53838;
+    border: 1px solid #f53838;
+    color:white;
+}
+.verde{
+    background:rgb(120, 198, 2);
+  border: 1px solid rgb(120, 198, 2);
+  color:white;
+}
 a.user-action:hover,a.user-detalle{
     color:#eeeeee;
 }
@@ -92,6 +101,11 @@ div#map {
     background: #0e21c6ca;
     color:#ffffff;
 }
+.azul{
+    background:rgba(12, 65, 238, 0.92);
+  border: 1px solid rgb(12, 65, 238);
+  color:white;
+}
 .panel-block {
     display: grid;
     background: white;
@@ -103,4 +117,25 @@ div#map {
 }
 div#mapalerta {
     height: 500px;
+}
+
+.burbuja{
+    border-radius: 50%;
+    padding: 5px;
+}
+a.alertas {
+    font-size: 20px;
+}
+a.alertas:hover{
+    color:gray;
+}
+a.alertas>span {
+    color: white;
+    font-size: 10px;
+    background: red;
+    border-radius: 50%;
+    padding: 3px 7px;
+    position: relative;
+    top: -6px;
+    left: -10px;
 }

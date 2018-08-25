@@ -17,4 +17,8 @@ class Travel extends Model
     public function paytype(){
         return $this->hasOne('App\PayType','id','paytype_id');
     }
+
+    public function travelstates(){
+        return $this->hasMany('App\TravelState','id','travel_state_id');
+    }
 }

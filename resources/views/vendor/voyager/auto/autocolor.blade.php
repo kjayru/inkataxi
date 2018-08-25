@@ -36,8 +36,8 @@
                                 <td>{{ $color->name }}</td>
                                 <td>@if($color->state==1) no activo @else activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-color-edit" data-id="{{ $color->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-color-delete" data-id="{{ $color->id }}"><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-color-edit burbuja azul" data-id="{{ $color->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-color-delete burbuja rojo" data-id="{{ $color->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

@@ -44,8 +44,8 @@
                             <td>{{ $promo->montodescuento}}</td>
                             <td>{{ $promo->limite}}</td>
                             <td>
-                                <a href="#" class="client-promo-edit" data-id="{{ $promo->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="client-delete-promo" data-id="{{ $promo->id }}"><i class="far fa-trash-alt"></i></a> 
+                                <a href="#" class="client-promo-edit burbuja azul" data-id="{{ $promo->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="client-delete-promo burbuja rojo" data-id="{{ $promo->id }}"><i class="far fa-trash-alt"></i></a> 
                             </td>
                         </tr>
                        @endforeach

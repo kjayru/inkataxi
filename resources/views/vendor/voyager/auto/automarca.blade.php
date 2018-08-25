@@ -40,8 +40,8 @@
                                 <td>{{ $brand->name }}</td>
                                 <td>@if($brand->state==1) no activo @else activo @endif</td>
                                 <td>
-                                    <a href="#" class="client-marca-edit" data-id="{{ $brand->id }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="client-delete-marca" data-id="{{ $brand->id }}"><i class="far fa-trash-alt"></i></a> 
+                                    <a href="#" class="client-marca-edit burbuja azul" data-id="{{ $brand->id }}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-delete-marca burbuja rojo" data-id="{{ $brand->id }}"><i class="far fa-trash-alt"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

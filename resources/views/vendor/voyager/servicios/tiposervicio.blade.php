@@ -37,7 +37,7 @@
                              <td>S/ {{ $service->comision }} </td>
                              <td>@if($service->status==2) Activo @else Desactivado @endif </td>
                              <td>
-                                    <a href="#" class="client-servicio-edit" data-id="{{$service->id}}"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="client-servicio-edit burbuja azul" data-id="{{$service->id}}"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="#" class="client-delete servicio-delete" data-id="{{$service->id}}"><i class="far fa-trash-alt"></i></a> 
                              </td>
                          </tr>
