@@ -53,7 +53,7 @@
                           <input type="hidden" name="orig_laty" value="{{ $origen->longitude }}">
                           <input type="hidden" name="dest_latx" value="{{ $destino->latitude }}">
                           <input type="hidden" name="dest_laty" value="{{ $destino->longitude }}">
-                              <button type="submit" class="user-detalle"><i class="fas fa-rocket"></i></button>
+                              <button type="submit" class="user-detalle burbujas verde"><i class="fas fa-rocket"></i></button>
                           </form>    
                           </td>
                       </tr>
