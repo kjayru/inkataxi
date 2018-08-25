@@ -23,7 +23,7 @@ class UsuarioController  extends VoyagerBaseController
 
     public function validar(){
 
-        $users = User::all();
+        $users = User::orderby('id','desc')->where('habilitado','<>','0')->get();
 
         return view('vendor.voyager.usuario.validar',['users'=>$users]);
     }

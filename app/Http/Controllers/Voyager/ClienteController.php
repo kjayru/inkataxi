@@ -26,7 +26,7 @@ class ClienteController extends VoyagerBaseController
      */
     public function inicio()
     {
-        $users = User::where('role_id',1)->get();
+        $users = User::orderby('id','desc')->where([['habilitado','<>','0'],['role_id',1]])->get();
       
          return view('vendor.voyager.cliente.show',['users'=> $users]);
         
