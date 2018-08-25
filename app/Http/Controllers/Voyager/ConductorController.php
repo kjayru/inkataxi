@@ -29,7 +29,7 @@ class ConductorController extends VoyagerBaseController
     public function inicio()
     {
       
-        $users = User::where('role_id',2)->get();
+        $users = User::orderby('id','desc')->where('role_id',2)->get();
         return view('vendor.voyager.conductor.index',['users'=>$users]);
         
     }
