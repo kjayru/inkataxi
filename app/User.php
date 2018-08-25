@@ -42,5 +42,14 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany('App\Alert');
     }
+
+    public function clientes(){
+        return $this->hasMany('App\Travel','id','idcliente');
+    }
+
+    public function conductores()
+    {
+        return $this->hasMany('App\Travel','id','idtaxista');
+    }
    
 }

@@ -16,7 +16,7 @@ use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\User;
-
+use App\Travel;
 class ClienteController extends VoyagerBaseController
 {
     /**
@@ -34,8 +34,24 @@ class ClienteController extends VoyagerBaseController
 
     public function viajes($id){
 
+        $travels = Travel::where('idcliente',$id)->get();
+        
+      
+       $conductor = User::where('id',$id)->first();
+       //viajes
+        $viajes = Travel::where('idcliente',$id)->count();
+       //calificacion
+        //$puntos = Qualification::where('user_id',$id)->sum();
+        $puntos = DB::table('qualifications')
+                            ->select(DB::raw('SUM(puntaje) as total'))->get();
+        $pto = $puntos[0]->total;
+      
+                            //puntos
+        $calificacion = ($viajes*100)/$puntos[0]->total; 
+       
 
-        return view('vendor.voyager.cliente.viajes');
+        
+        return view('vendor.voyager.cliente.viajes',['travels'=>$travels,'conductor'=>$conductor,'viajes'=>$viajes,'puntos'=>$pto,'calificacion'=>$calificacion]);
 
     }
 
@@ -47,6 +63,31 @@ class ClienteController extends VoyagerBaseController
         return response()->json(['rpta'=>'ok']);
     }
 
+
+
+    public function viajemapa(Request $request)
+    {
+        
+        $origlatx = $request->orig_latx;
+        $origlaty = $request->orig_laty;
+        $destlatx = $request->dest_latx;
+        $destlaty = $request->dest_laty;
+
+         return view('vendor.voyager.cliente.clientemapa',['origlatx'=>$origlatx,'origlaty'=>$origlaty,'destlatx'=>$destlatx,'destlaty'=>$destlaty]);
+        
+    }
+    
+
+    public function sendestado(Request $request, $id){
+        
+        $conductor = User::find($id);
+
+        $conductor->status = $request->estado;
+
+        $conductor->save();
+
+        return response()->json(['rpta'=>'ok']);
+    }
     /**
      * Show the form for creating a new resource.
      *

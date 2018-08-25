@@ -22,17 +22,42 @@
                 </thead>
                 <tbody>
                
-                <tr>
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    
-                </tr>
+                        @foreach($travels as $key => $travel)
+                        <tr>
+                          <th>
+                           {{ $key + 1 }}
+                          </th>
+                          <td>
+                              
+                             @php $origen = json_decode($travel->origen) @endphp
+                             {{ utf8_decode($origen->direccion) }}
+                          </td>
+                          <td>
+                              @php $destino = json_decode($travel->destino) @endphp
+                              {{ utf8_decode($destino->direccion) }}
+                          </td>
+                          <td>
+                              
+                              
+                              {{ $travel->conductor }}
+                          </td>
+  
+                         <td>{{ $travel->paytype->nombre }}</td>
+                         @php $costo = json_decode($travel->costo) @endphp
+                         <td>S/. {{ $costo->preciobase }} </td>
+                         <td></td>
+                          <td>
+                          <form action="/admin/clientes/mapa" method="post">
+                          @csrf
+                          <input type="hidden" name="orig_latx" value="{{ $origen->latitude }}">
+                          <input type="hidden" name="orig_laty" value="{{ $origen->longitude }}">
+                          <input type="hidden" name="dest_latx" value="{{ $destino->latitude }}">
+                          <input type="hidden" name="dest_laty" value="{{ $destino->longitude }}">
+                              <button type="submit" class="user-detalle"><i class="fas fa-rocket"></i></button>
+                          </form>    
+                          </td>
+                      </tr>
+                 @endforeach
                
             </tbody>
            </table>

@@ -14,6 +14,11 @@ class Travel extends Model
         return $this->belongsTo('App\User','idcliente','id');
     }
 
+    public function conductor()
+    {
+        return $this->belongsTo('App\User','idtaxista','id');
+    }
+
     public function paytype(){
         return $this->hasOne('App\PayType','id','paytype_id');
     }

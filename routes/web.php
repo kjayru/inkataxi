@@ -47,6 +47,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('clientes/{id}','Voyager\ClienteController@deleteuser');
 
     Route::get('clientes/viajes/{id}','Voyager\ClienteController@viajes');
+
+    Route::post('clientes/mapa','Voyager\ClienteController@viajemapa')->name('voyager.cliente.viajemapa');
+    Route::put('clientes/sendestado/{id}','Voyager\ClienteController@sendestado');
     
     Route::get('validar','Voyager\UsuarioController@validar');
     Route::post('validar','Voyager\UsuarioController@validarNew');
